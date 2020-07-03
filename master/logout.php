@@ -3,7 +3,6 @@
 //logout.php
 
 include('interest/config.php');
-require_once __DIR__ . '\interest\vendor\autoload.php';
 include "../constants.php";
    
 session_start();    
@@ -16,7 +15,6 @@ unset($_SESSION['user_last_name']);
 unset($_SESSION['user_email_address']);
 unset($_SESSION['user_image']);
 unset($_SESSION['club_login']);
-unset($_SESSION['hash_key']);
 
 //Reset OAuth access token    
 $google_client->revokeToken($accesstoken);
