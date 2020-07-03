@@ -19,10 +19,7 @@ unset($_SESSION['club_login']);
 unset($_SESSION['hash_key']);
 
 //Reset OAuth access token    
-$client = new Google_Client();
-
-//$client->revokeToken();    
-$client->revokeToken($accesstoken);
+$google_client->revokeToken($accesstoken);
 
 //Destroy entire session    
 session_destroy();
