@@ -22,7 +22,7 @@ if(isset($_GET["club_login"]) && !isset($_SESSION['club_login']))
 
 if($_SESSION['club_login']=="true" && empty($_SESSION['event_id']))
 {
-	header('location: ../../org1');
+	header('location: ../../'.$_SESSION['org_id'].'');
 }
 
 if(!empty($_SESSION['event_id'])){
@@ -126,7 +126,7 @@ if(isset($_GET["code"]))
 			if(!empty($_SESSION['club_login']) && $_SESSION['club_login']=="false")
 			{
 				$_SESSION['club_login']="true";
-				header('location: ../../org1');
+				header('location: ../../'.$_SESSION['org_id'].'');
 			}
 		}							 
 		else{
