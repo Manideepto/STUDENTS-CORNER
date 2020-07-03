@@ -95,7 +95,7 @@ require("constants.php");
 					</div>
 					<div class="col-xs-6 text-right menu-1">
 						<ul>
-							<li class="btn-cta"><a href="#"><span>Login</span></a></li>
+							<li class="btn-cta"><a href="https://mail.google.com/mail/u/0/?logout&hl=en"><span>Logout from all accounts</span></a></li>
 						</ul>
 					</div>
 				</div>

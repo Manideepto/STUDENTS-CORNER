@@ -85,8 +85,9 @@
 						</div>
 					</div>
 
-					<div class="col-xs-4 text-right menu-1">
+					<div class="col-xs-12 text-right menu-1">
 						<ul>
+							<li><a href="../">Clubs-HomePage</a></li>
 							<li class="active"><a href="index.php">Home</a></li>
 							<li><a href="events.php">Events</a></li>
 							<li><a href="blog.php">Blog</a></li>
