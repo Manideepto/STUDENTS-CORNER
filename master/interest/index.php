@@ -160,7 +160,7 @@ if(!isset($_SESSION['access_token']) && $login_button == '')
    {
 		echo'<div class="container">
 			<br />
-			<img src="iim_logo.PNG" height="100" width="100" align="middle"/> <br>
+			<img src="iim_logo.png" height="100" width="100" align="middle"/> <br>
 			<br />
 		<div class="panel panel-default">';
 		echo '<div class="panel-heading">Welcome '.$_SESSION['user_first_name'].' '.$_SESSION['user_last_name'].'</div><div class="panel-body">';
