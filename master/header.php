@@ -14,6 +14,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 <title id="org_name_title">ORG1</title>
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
@@ -84,17 +89,38 @@
 						</a>
 						</div>
 					</div>
-
-					<div class="col-xs-12 text-right menu-1">
-						<ul>
-							<li><a href="../">Clubs-HomePage</a></li>
-							<li class="active"><a href="index.php">Home</a></li>
-							<li><a href="events.php">Events</a></li>
-							<li><a href="blog.php">Blog</a></li>
-                            <li><a href="members.php">Members</a></li>
-							<li><a href="../master/logout.php">Logout</a></li>
-			            </ul>
+					
+					<div class="col-xs-4 col-md-4">
+					<nav class="navbar navbar-expand-sm navbar-light bg-light">
+						  <ul class="navbar-nav">
+						    <li class="nav-item dropdown">
+							  <a class="navbar-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Home
+							  </a>
+							  <div class="dropdown-menu navbar-light bg-light" aria-labelledby="navbarDropdown">
+							    <a class="dropdown-item" href="index.php">Current Club</a>
+							    <a class="dropdown-item" href="../">All Clubs</a>
+							  </div>
+						    </li>
+							<li class="nav-item dropdown">
+							  <a class="navbar-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    Activities
+							  </a>
+							  <div class="dropdown-menu navbar-light bg-light" aria-labelledby="navbarDropdown" style="background-color: #e3f2fd;">
+							    <a class="dropdown-item" href="events.php">Events</a>
+							    <a class="dropdown-item" href="blog.php">Blog</a>
+							  </div>
+						    </li>
+							<li class="nav-item">
+							  <a class="navbar-link" href="members.php">Members</a>
+							</li>
+							<li class="nav-item">
+							  <a class="navbar-link" href="../master/logout.php">Logout</a>
+							</li>
+						  </ul>
+					</nav>
 					</div>
+					
 				</div>
 				
 			</div>
