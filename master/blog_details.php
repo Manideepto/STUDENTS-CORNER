@@ -84,9 +84,10 @@
               } else{
                    status ="Inactive";
                }
+               string = string.replace(/\\/g, "");
 
-               photo1 += "url(" + value['photo'] + ")";
-               console.log(photo1);
+//                photo1 += "url(" + value['photo'] + ")";
+//                console.log(photo1);
                        }); 
 
             // //   }
