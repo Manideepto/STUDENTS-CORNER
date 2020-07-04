@@ -1,7 +1,7 @@
 <?php
 	include_once  "../constants.php";
 	session_start();
-	echo "<h3><center>Welcome to the club, ".$_SESSION['user_first_name']." ".$_SESSION['user_last_name']."</center></h3>";
+	echo "<h3><center>Welcome, ".$_SESSION['user_first_name']." ".$_SESSION['user_last_name']."</center></h3>";
 	if(!isset($_SESSION['user_email_address']))
 	{
 		header('location:'.BASE_URL.'');
