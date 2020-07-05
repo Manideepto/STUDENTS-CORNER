@@ -8,7 +8,7 @@
 	}
 ?>
  
- <div>
+ <div id="blog_header_img">
 	<aside id="fh5co-hero">
 			<div class="flexslider">
 				<ul class="slides">
@@ -84,22 +84,29 @@
               } else{
                    status ="Inactive";
                }
-               string = string.replace(/\\/g, "");
 
-//                photo1 += "url(" + value['photo'] + ")";
-//                console.log(photo1);
+               string = string.replace(/\\/g, "");
+               
+               if (value['photo'] !=null){
+                photo1 += "url(" + value['photo'] + ")";
+               }
+               
                        }); 
 
-            // //   }
-
+            
                  string += '</div>\
                  </div>\
                  </div>'; 
 
                $("#blog").html(string); 
-            // console.log("setting photo");
-            document.getElementById("slider11").style.backgroundImage = photo1;
-            // console.log(slider1);
+
+
+            if(photo1==''){
+              $("#blog_header_img").html(""); 
+            }else{
+              document.getElementById("slider11").style.backgroundImage = photo1;
+            }
+            
           }); 
    }
 
