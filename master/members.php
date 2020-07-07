@@ -51,10 +51,10 @@
 								// <li><a href='#'><i class='icon-linkedin2'></i></a></li>\
 								"<li><a href='mailto:"+ value['email'] +"'><i class='icon-mail5'></i></a></li>\
 							</ul>\
-						</div>\
-						<span>Position</span>\
-						<h3><a href='#'>" + value['name'] + "</a></h3>\
-						<p>"+value['mem_bio'].substring(0,80)+ "</p>\
+							</div>";
+      							      // <span>Position</span>\
+               string+= "<h3><a href='#'>" + value['name'] + "</a></h3>\
+				<p>"+value['mem_bio'].substring(0,80)+ "</p>\
 					</div>\
                     </div>";
                   } else{
