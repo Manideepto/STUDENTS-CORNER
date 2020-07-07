@@ -6,6 +6,7 @@
  * @twitter https://twitter.com/thesoftwareguy7
  * @googleplus https://plus.google.com/+thesoftwareguyIn
  */
+ session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -114,9 +115,14 @@
 							<li class="nav-item">
 							  <a class="navbar-link" href="members.php">Members</a>
 							</li>
-							<li class="nav-item">
-							  <a class="navbar-link" href="../master/logout.php">Logout</a>
-							</li>
+							<li class="nav-item dropdown">
+							  <a class="navbar-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <?php echo '<img src="'.$_SESSION["user_image"].'" class="img-responsive img-circle img-thumbnail" width="50" align="middle"/>';?>
+							  </a>
+							  <div class="dropdown-menu navbar-light bg-light" aria-labelledby="navbarDropdown" style="background-color: #e3f2fd;">
+							    <a class="dropdown-item" href="../master/logout.php"><?php echo "<b>Logout?</b>  ".$_SESSION['user_first_name']." ".$_SESSION['user_last_name'].""; ?> </a>
+							  </div>
+						    </li>
 						  </ul>
 					</nav>
 					</div>
