@@ -6,8 +6,14 @@
  * @twitter https://twitter.com/thesoftwareguy7
  * @googleplus https://plus.google.com/+thesoftwareguyIn
  */
+ include_once  "../constants.php";
  session_start();
+ if(!isset($_SESSION['user_email_address']))
+ {
+	header('location:'.BASE_URL.'');
+ } 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
