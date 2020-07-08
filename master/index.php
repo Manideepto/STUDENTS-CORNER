@@ -1,9 +1,43 @@
 <?php
 	include_once  "../constants.php";
+	require("../libs/config.php");
 	if(!isset($_SESSION['user_email_address']))
 	{
 		header('location:'.BASE_URL.'');
 	}
+	echo "<div class='navbar'>";
+	echo "<center><h2>Upcoming Events</h2></center>";
+	echo "<center><h2>Recent Blogs</h2></center>";
+	echo "</div>";
+	
+	//Query for Events
+	$sql = "SELECT event_id,event_title,event_thumbnail FROM mp_events WHERE org_id = '" .$_SESSION['org_id']. "'AND status='A' ORDER BY event_date,count_interested ASC";
+	$stmt = $DB->prepare($sql);
+	$stmt->execute();
+	$results = $stmt->fetchAll();
+	$i=0;
+	echo "<div class='navbar'>";
+	foreach($results as $row) {
+		if($i==2)
+			break;
+		echo "<a target='_blank' href='event_details.php?event_id=".$row['event_id']."'><img src='".$row['event_thumbnail']."' style='width:100px'><br>".$row['event_title']."</a>";
+		$i++;
+	}
+	
+	//Query for Blogs
+	$sql = "SELECT blog_id,blog_title,photo FROM mp_blogs WHERE org_id = '" .$_SESSION['org_id']. "'AND status='A' ORDER BY date ASC";
+	$stmt = $DB->prepare($sql);
+	$stmt->execute();
+	$results = $stmt->fetchAll();
+	$i=0;
+	foreach($results as $row) {
+		if($i==2)
+			break;
+		echo "<a target='_blank' href='blog_details.php?blog_id=".$row['blog_id']."'><img src='".$row['photo']."' style='width:100px'><br>".$row['blog_title']."</a>";
+		$i++;
+	}
+	echo "</div>";
+	
 ?>
 	
 	<div>
