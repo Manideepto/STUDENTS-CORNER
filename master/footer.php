@@ -63,7 +63,7 @@
 				<div class="col-md-12 text-center">
 					<p>
 						<small class="block">&copy; 2019. All Rights Reserved.</small> 
-						<small class="block">Powered by <a href="http://stdwww.iima.ac.in/ccc/" target="_blank">CCC IIMA</a> </small>
+						<small class="block">Powered by <a href="https://students.iima.ac.in/ccc/" target="_blank">CCC IIMA</a> </small>
 					</p>
 				</div>
 			</div>
