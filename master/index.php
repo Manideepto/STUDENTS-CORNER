@@ -140,8 +140,6 @@
 			var result= $.parseJSON(data); 
 			var recent_event_title1 = document.getElementById('recent_event_title1');
 			var recent_event_title2 = document.getElementById('recent_event_title2');
-			var recent_event_desc1 = document.getElementById('recent_event_desc1');
-			var recent_event_desc2 = document.getElementById('recent_event_desc2');
 			var recent_event_img1 = document.getElementById('recent_event_img1');
 			var recent_event_img2 = document.getElementById('recent_event_img2');
 			var recent_event_details1 = document.getElementById('recent_event_details1');
@@ -155,7 +153,7 @@
 				{
 					recent_event_title1.text = value['event_title'];
 					recent_event_title1.href="event_details.php?event_id="+value['event_id'];
-					recent_event_desc1.text = value['event_desc'];
+					$("#recent_event_desc1").html("<p>"+value['event_desc'].substring(0,200)+"</p>");
 					recent_event_img1.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
 					recent_event_img1.href="event_details.php?event_id="+value['event_id'];
 					recent_event_details1.href="event_details.php?event_id="+value['event_id'];
@@ -164,7 +162,7 @@
 				{
 					recent_event_title2.text = value['event_title'];
 					recent_event_title2.href="event_details.php?event_id="+value['event_id'];
-					recent_event_desc2.text = value['event_desc'];
+					$("#recent_event_desc2").html("<p>"+value['event_desc'].substring(0,200)+"</p>");
 					recent_event_img2.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
 					recent_event_img2.href="event_details.php?event_id="+value['event_id'];
 					recent_event_details2.href="event_details.php?event_id="+value['event_id'];
@@ -183,8 +181,6 @@
 			var result= $.parseJSON(data);
 			var recent_blog_title1 = document.getElementById('recent_blog_title1');
 			var recent_blog_title2 = document.getElementById('recent_blog_title2');
-			var recent_blog_desc1 = document.getElementById('recent_blog_desc1');
-			var recent_blog_desc2 = document.getElementById('recent_blog_desc2');
 			var recent_blog_img1 = document.getElementById('recent_blog_img1');
 			var recent_blog_img2 = document.getElementById('recent_blog_img2');
 			var recent_blog_details1 = document.getElementById('recent_blog_details1');
@@ -198,7 +194,7 @@
 				{
 					recent_blog_title1.text = value['blog_title'];
 					recent_blog_title1.href="blog_details.php?blog_id="+value['blog_id'];
-					recent_blog_desc1.text = value['blog_data'];
+					$("#recent_blog_desc1").html("<p>"+value['blog_data'].substring(0,200)+"</p>");
 					recent_blog_img1.style.backgroundImage =  "url(" + value['photo'] + ")";
 					recent_blog_img1.href="blog_details.php?blog_id="+value['blog_id'];
 					recent_blog_details1.href="blog_details.php?blog_id="+value['blog_id'];
@@ -207,7 +203,7 @@
 				{
 					recent_blog_title2.text = value['blog_title'];
 					recent_blog_title2.href="blog_details.php?blog_id="+value['blog_id'];
-					recent_blog_desc2.text = value['blog_data'];
+					$("#recent_blog_desc2").html("<p>"+value['blog_data'].substring(0,200)+"</p>");
 					recent_blog_img2.style.backgroundImage =  "url(" + value['photo'] + ")";
 					recent_blog_img2.href="blog_details.php?blog_id="+value['blog_id']
 					recent_blog_details2.href="blog_details.php?blog_id="+value['blog_id']
