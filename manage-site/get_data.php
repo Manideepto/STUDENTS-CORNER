@@ -74,6 +74,18 @@ $fetch_data = true;
 		}
 $fetch_data = true;
 }
+elseif($_GET['page'] == 'upcoming_events'){
+			
+			$sql = "SELECT event_id,event_title,event_thumbnail FROM mp_events WHERE org_id = '" .$_GET['org_id']. "'AND status='A' ORDER BY event_date,count_interested DESC LIMIT 2";	
+
+$fetch_data = true;
+}
+elseif($_GET['page'] == 'recent_blogs'){
+	
+			 $sql = "SELECT blog_id,blog_title,photo FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "'AND status='A' ORDER BY date DESC LIMIT 2";	
+
+$fetch_data = true;
+}
 
 
 
