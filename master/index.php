@@ -153,7 +153,7 @@
 			var i=0;
 			$.each( result, function( key, value ) {
 				i++;
-				string = "<a target='_blank' href='event_details.php?event_id="+value['event_id']+"'><img src='"+value['event_thumbnail']+"' style='width:100px'>"+value['event_title']+"</a>";
+				string = "<a target='_blank' href='event_details.php?event_id="+value['event_id']+"'><img src='"+value['event_thumbnail']+"' class='img-responsive img-circle img-thumbnail' width='80' align='middle'><h4>"+value['event_title']+"</h4></a>";
 				if(i==1)
 					$("#upcoming_event1").html(string);
 				else if(i==2)
@@ -173,7 +173,7 @@
 			var i=0;
 			$.each( result, function( key, value ) {
 				i++;
-				string = "<a target='_blank' href='blog_details.php?blog_id="+value['blog_id']+"'><img src='"+value['photo']+"' style='width:100px'>"+value['blog_title']+"</a>";
+				string = "<a target='_blank' href='blog_details.php?blog_id="+value['blog_id']+"'><img src='"+value['photo']+"' class='img-responsive img-circle img-thumbnail' width='100' height='100' align='middle'><h4>"+value['blog_title']+"</h4></a>";
 				if(i==1)
 					$("#recent_blog1").html(string);
 				else if(i==2)
