@@ -81,7 +81,7 @@
 						<div class="date text-center" id="recent_event_date1" ><span>15<br>Mar.</span></div>
 						<h3><a href="#" id="recent_event_title1" >USA, International Triathlon Event</a></h3>
 						<p id="recent_event_desc1" >Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						<p><a id="recent_event_details1" href="#">Read More</a></p>
+						<p><a id="recent_event_details1" href="#">Details</a></p>
 
 						<!-- <a href="#" class="course-img" id="recent_event_img1" style="background-image: url(images/project-1.jpg);">
 						</a>
@@ -97,7 +97,7 @@
 						<div class="date text-center" id="recent_event_date2"><span>15<br>Mar.</span></div>
 						<h3><a href="#" id="recent_event_title2" >USA, International Triathlon Event</a></h3>
 						<p id="recent_event_desc2" >Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						<p><a id="recent_event_details2" href="#">Read More</a></p>
+						<p><a id="recent_event_details2" href="#">Details</a></p>
 
 						<!-- <a href="#" class="course-img" id="recent_event_img2" style="background-image: url(images/project-2.jpg);">
 						</a>
@@ -112,13 +112,12 @@
 				<div class="row">
 				<div class="col-lg-6 col-md-6">
 					<div class="fh5co-blog animate-box">
-						<a href="#" class="blog-img-holder" id="recent_blog_img1" style="background-image: url(images/project-1.jpg);">
-						</a>
+						<a href="#" class="blog-img-holder" id="recent_blog_img1" style="background-image: url(images/project-1.jpg);"></a>
 						<div class="blog-text">
 							<h3><a href="#" id="recent_blog_title1"></a></h3>
 							<span class="posted_on" id="recent_blog_date1" >March. 15th</span>
 							<a id="recent_blog_desc1"></a><br><br>
-							<span><a class="btn btn-primary btn-sm btn-course" id="recent_blog_details1">Blog Details</a></span>
+							<span><a class="btn btn-primary btn-sm btn-course" id="recent_blog_details1">Read</a></span>
 						</div>
 					</div>
 				</div>
@@ -130,7 +129,7 @@
 							<h3><a href="#" id="recent_blog_title2"></a></h3>
 							<span class="posted_on" id="recent_blog_date2">March. 15th</span>
 							<a id="recent_blog_desc2"></a><br><br>
-							<span><a class="btn btn-primary btn-sm btn-course" id="recent_blog_details2">Blog Details</a></span>
+							<span><a class="btn btn-primary btn-sm btn-course" id="recent_blog_details2">Read</a></span>
 						</div>
 					</div>
 				</div>
