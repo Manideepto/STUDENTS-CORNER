@@ -9,8 +9,7 @@ require("constants.php");
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="icon" href="./images/iimlogo.png">
-	<title> IIMA Students Portal</title>
+	<title>Education &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -74,7 +73,7 @@ require("constants.php");
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-<!-- <!gdsagdsg-- check  --> -->
+<!-- <!gdsagdsg-- check  -->
 
 	</head>
 	<body>
@@ -105,7 +104,59 @@ require("constants.php");
 		</div>
 	</nav>
 	
-
+	<aside id="fh5co-hero">
+		<div class="flexslider">
+			<ul class="slides">
+		   	<li style="background-image: url(images/chaos.jpg);">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container">
+		   			<div class="row">
+			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
+			   				<div class="slider-text-inner">
+			   					</div>
+			   			</div>
+			   		</div>
+		   		</div>
+		   	</li>
+		   	<li style="background-image: url(images/crwing.jpg);">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container">
+		   			<div class="row">
+			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
+			   				<div class="slider-text-inner">
+			   				</div>
+			   			</div>
+			   		</div>
+		   		</div>
+			</li>
+			<li style="background-image: url(images/LKP.jpg);">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container">
+		   			<div class="row">
+			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
+			   				<div class="slider-text-inner">
+			   				</div>
+			   			</div>
+			   		</div>
+		   		</div>
+		   	</li>
+		   	<li style="background-image: url(images/olddorms.jpg);">
+		   		<div class="overlay-gradient"></div>
+		   		<div class="container">
+		   			<div class="row">
+			   			<div class="col-md-8 col-md-offset-2 text-center slider-text">
+			   				<div class="slider-text-inner">
+			   					<!-- <h1>We Help You to Learn New Things</h1>
+									<h2>Brought to you by <a href="http://freehtml5.co/" target="_blank">freehtml5.co</a></h2>
+									<p><a class="btn btn-primary btn-lg btn-learn" href="#">Start Learning Now!</a></p> -->
+			   				</div>
+			   			</div>
+			   		</div>
+		   		</div>
+		   	</li>		   	
+		  	</ul>
+	  	</div>
+	</aside>
 
 	<div id="fh5co-course-categories">
 		<div class="container">
