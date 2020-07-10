@@ -1,6 +1,7 @@
 <?php
 	include_once  "../constants.php";
 	//require("../libs/config.php");
+
 	if(!isset($_SESSION['user_email_address']))
 	{
 		header('location:'.BASE_URL.'');
@@ -67,53 +68,67 @@
 	</div>
 	
 	 
-	<div id="fh5co-course">
+	<div id="fh5co-blog">
 		<div class="container">
 			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2><b>Upcoming Events & Recent Blogs<b></h2>
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2><b>Upcoming Events &amp; Recent Blogs<b></h2>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row row-padded-mb">
 				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" id="recent_event_img1" style="background-image: url(images/project-1.jpg);">
+					<div class="fh5co-event">
+						<div class="date text-center" id="recent_event_date1" ><span>15<br>Mar.</span></div>
+						<h3><a href="#" id="recent_event_title1" >USA, International Triathlon Event</a></h3>
+						<p id="recent_event_desc1" >Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p><a id="recent_event_details1" href="#">Read More</a></p>
+
+						<!-- <a href="#" class="course-img" id="recent_event_img1" style="background-image: url(images/project-1.jpg);">
 						</a>
 						<div class="desc">
 							<h3><a href="#" id="recent_event_title1"></a></h3>
 							<a id="recent_event_desc1"></a><br><br>
 							<span><a class="btn btn-primary btn-sm btn-course" id="recent_event_details1">Event Details</a></span>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" id="recent_event_img2" style="background-image: url(images/project-2.jpg);">
+					<div class="fh5co-event">
+						<div class="date text-center" id="recent_event_date2"><span>15<br>Mar.</span></div>
+						<h3><a href="#" id="recent_event_title2" >USA, International Triathlon Event</a></h3>
+						<p id="recent_event_desc2" >Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p><a id="recent_event_details2" href="#">Read More</a></p>
+
+						<!-- <a href="#" class="course-img" id="recent_event_img2" style="background-image: url(images/project-2.jpg);">
 						</a>
 						<div class="desc">
 							<h3><a href="#" id="recent_event_title2"></a></h3>
 							<a id="recent_event_desc2"></a><br><br>
 							<span><a class="btn btn-primary btn-sm btn-course" id="recent_event_details2">Event Details</a></span>
-						</div>
+						</div> -->
 					</div>
 				</div>
-				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" id="recent_blog_img1" style="background-image: url(images/project-1.jpg);">
+				</div>
+				<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="fh5co-blog animate-box">
+						<a href="#" class="blog-img-holder" id="recent_blog_img1" style="background-image: url(images/project-1.jpg);">
 						</a>
-						<div class="desc">
+						<div class="blog-text">
 							<h3><a href="#" id="recent_blog_title1"></a></h3>
+							<span class="posted_on" id="recent_blog_date1" >March. 15th</span>
 							<a id="recent_blog_desc1"></a><br><br>
 							<span><a class="btn btn-primary btn-sm btn-course" id="recent_blog_details1">Blog Details</a></span>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 animate-box">
-					<div class="course">
-						<a href="#" class="course-img" id="recent_blog_img2" style="background-image: url(images/project-2.jpg);">
+				<div class="col-lg-6 col-md-6">
+					<div class="fh5co-blog animate-box">
+						<a href="#" class="blog-img-holder" id="recent_blog_img2" style="background-image: url(images/project-2.jpg);">
 						</a>
-						<div class="desc">
+						<div class="blog-text">
 							<h3><a href="#" id="recent_blog_title2"></a></h3>
+							<span class="posted_on" id="recent_blog_date2">March. 15th</span>
 							<a id="recent_blog_desc2"></a><br><br>
 							<span><a class="btn btn-primary btn-sm btn-course" id="recent_blog_details2">Blog Details</a></span>
 						</div>
@@ -140,22 +155,39 @@
 			var result= $.parseJSON(data); 
 			var recent_event_title1 = document.getElementById('recent_event_title1');
 			var recent_event_title2 = document.getElementById('recent_event_title2');
-			var recent_event_img1 = document.getElementById('recent_event_img1');
-			var recent_event_img2 = document.getElementById('recent_event_img2');
+			// var recent_event_img1 = document.getElementById('recent_event_img1');
+			// var recent_event_img2 = document.getElementById('recent_event_img2');
+			
 			var recent_event_details1 = document.getElementById('recent_event_details1');
 			var recent_event_details2 = document.getElementById('recent_event_details2');
 			
+			var mon = new Array();
+			mon["01"] = "Jan";
+			mon["02"] = "Feb";
+			mon["03"] = "Mar";
+			mon["04"] = "Apr";
+			mon["05"] = "May";
+			mon["06"] = "Jun";
+			mon["07"] = "Jul";
+			mon["08"] = "Aug";
+			mon["09"] = "Sep";
+			mon["10"] = "Oct";
+			mon["11"] = "Nov";
+			mon["12"] = "Dec";
+
 			var i=0;
 			$.each( result, function( key, value ) {
 				i++;
 				//string = "<a target='_blank' href='event_details.php?event_id="+value['event_id']+"'><img src='"+value['event_thumbnail']+"' class='img-responsive img-circle img-thumbnail' style='width: 100px; height: 100px;' align='middle'><h4>"+value['event_title']+"</h4></a>";
 				if(i==1)
 				{
+
 					recent_event_title1.text = value['event_title'];
 					recent_event_title1.href="event_details.php?event_id="+value['event_id'];
 					$("#recent_event_desc1").html("<p>"+value['event_desc'].substring(0,200)+"</p>");
-					recent_event_img1.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
-					recent_event_img1.href="event_details.php?event_id="+value['event_id'];
+					$("#recent_event_date1").html("<span>"+value['event_date'].substring(8,10)+ "<br>" + mon[value['event_date'].substring(5,7)] +"</span>");
+					// recent_event_img1.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
+					// recent_event_img1.href="event_details.php?event_id="+value['event_id'];
 					recent_event_details1.href="event_details.php?event_id="+value['event_id'];
 				}
 				else if(i==2)
@@ -163,8 +195,9 @@
 					recent_event_title2.text = value['event_title'];
 					recent_event_title2.href="event_details.php?event_id="+value['event_id'];
 					$("#recent_event_desc2").html("<p>"+value['event_desc'].substring(0,200)+"</p>");
-					recent_event_img2.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
-					recent_event_img2.href="event_details.php?event_id="+value['event_id'];
+					$("#recent_event_date2").html("<span>"+value['event_date'].substring(8,10)+ "<br>" + mon[value['event_date'].substring(5,7)] +"</span>");
+					// recent_event_img2.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
+					// recent_event_img2.href="event_details.php?event_id="+value['event_id'];
 					recent_event_details2.href="event_details.php?event_id="+value['event_id'];
 					
 				}
@@ -185,6 +218,8 @@
 			var recent_blog_img2 = document.getElementById('recent_blog_img2');
 			var recent_blog_details1 = document.getElementById('recent_blog_details1');
 			var recent_blog_details2 = document.getElementById('recent_blog_details2');
+			var recent_blog_date1 = document.getElementById('recent_blog_date1');
+			var recent_blog_date2 = document.getElementById('recent_blog_date2');
 			
 			var i=0;
 			$.each( result, function( key, value ) {
@@ -194,19 +229,25 @@
 				{
 					recent_blog_title1.text = value['blog_title'];
 					recent_blog_title1.href="blog_details.php?blog_id="+value['blog_id'];
-					$("#recent_blog_desc1").html("<p>"+value['blog_data'].substring(0,200)+"</p>");
+					$("#recent_blog_desc1").html("<p>"+value['blog_data'].substring(0,200).replace( /(<([^>]+)>)/ig, '')+"</p>");
+					$("#recent_blog_date1").html(value['date']);
 					recent_blog_img1.style.backgroundImage =  "url(" + value['photo'] + ")";
 					recent_blog_img1.href="blog_details.php?blog_id="+value['blog_id'];
 					recent_blog_details1.href="blog_details.php?blog_id="+value['blog_id'];
+					recent_blog_date1.href="blog_details.php?blog_id="+value['blog_id'];
+				
 				}
 				else if(i==2)
 				{
 					recent_blog_title2.text = value['blog_title'];
 					recent_blog_title2.href="blog_details.php?blog_id="+value['blog_id'];
-					$("#recent_blog_desc2").html("<p>"+value['blog_data'].substring(0,200)+"</p>");
+					$("#recent_blog_desc2").html("<p>"+value['blog_data'].substring(0,200).replace( /(<([^>]+)>)/ig, '')+"</p>");
+					$("#recent_blog_date2").html(value['date']);
 					recent_blog_img2.style.backgroundImage =  "url(" + value['photo'] + ")";
 					recent_blog_img2.href="blog_details.php?blog_id="+value['blog_id']
 					recent_blog_details2.href="blog_details.php?blog_id="+value['blog_id']
+					recent_blog_date2.href="blog_details.php?blog_id="+value['blog_id']
+				
 				}
 			});
 			});
