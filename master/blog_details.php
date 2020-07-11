@@ -26,11 +26,12 @@
 		</aside>
 
 </div>
-    
+
+<div class="container">
     <div id="blog">
     
     </div>
-
+</div>
 
         
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -64,7 +65,7 @@
                if (status == "A"){
                    status = "Active";
 
-            string += "<div class='col-md-10 animate-box' style='padding-left: 200px'>\
+            string += "<div class='col-md-8 animate-box' style='padding-left: 200px'>\
             <div>";
 						
               
