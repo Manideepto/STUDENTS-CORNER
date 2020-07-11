@@ -86,6 +86,12 @@ elseif($_GET['page'] == 'recent_blogs'){
 
 $fetch_data = true;
 }
+elseif($_GET['page'] == 'reg_link'){
+	
+		$sql = "SELECT * FROM mp_interested WHERE org_id = '" .$_GET['org_id']. "' AND event_id = '" .$_GET['event_id']. "' AND interested_email = '" .$_GET['user_id']. "'";	
+
+$fetch_data = true;
+}
 
 
 

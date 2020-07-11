@@ -35,7 +35,8 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
        var url = '<?php echo GET_DATA_URL ?>' ;
        var org_id = '<?php echo ORG ?>';
        var event_id = '<?php echo $_GET["event_id"] ?>';
- 
+	   var user_id = '<?php echo $_SESSION["user_email_address"] ?>';
+	   
        function setevents(){ 
         var page = 'events';
          $.ajax({ 
@@ -71,9 +72,9 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 			if (value['event_email']!="")			string +=	"<br><br><span>Email : "+value['event_email']+"</span>"
 			if (value['event_phone']!="")			string +=	"<br><span>Phone : "+value['event_phone']+"</span>";
 			if (value['event_addDetails']!="")		string +=	"<br><span>Details  : "+value['event_addDetails']+"</span>";
-			if (value['event_reglink']!="")			string +=	"<br><span><a href='https://"+value['event_reglink']+"' class='btn btn-primary btn-sm btn-course'>Register</a></span>";
+			if (value['event_reglink']!="")			string +=	"<br><span><a id='reg_link' style='display:none' href='https://"+value['event_reglink']+"' class='btn btn-primary btn-sm btn-course'>Register</a></span>";
 			
-			string +=	"<br><span><a onclick=window.open('../master/interest?event_id="+value['event_id']+"&org_id="+value['org_id']+"','mywindow',menubar=1,resizable=1) class='btn btn-primary btn-sm btn-course'>Interest</a></span>"
+			string +=	"<br><span><a onclick=window.open('../master/interest?event_id="+value['event_id']+"&org_id="+value['org_id']+"','mywindow',menubar=1,resizable=1);check_reglink(); class='btn btn-primary btn-sm btn-course'>Interest</a></span>"
             string +=		"</div>\
 				</div>\
                 </div>";
@@ -89,15 +90,63 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
                  </div>'; 
 
               $("#fh5co-course").html(string); 
-          }); 
+          });
+		
+		
    }
-
-
+	
+	function display_reglink() {
+		var page = 'reg_link';
+         $.ajax({ 
+           method: "get", 
+           url: url ,
+           data: {org_id: org_id ,
+           page:page ,
+           event_id:event_id,
+		   user_id:user_id
+           }
+        }).done(function( data ) {
+		   var result= $.parseJSON(data);
+		   var i=0;
+		   var x = document.getElementById("reg_link");
+           $.each( result, function( key, value ) {
+				i++;
+				if (x.style.display === "none") {
+					x.style.display = "inline-block";
+				}
+            });
+			if(x.style.display === "inline-block" && i==0) {
+				x.style.display = "none";
+			}
+ 
+       });
+	 }
+	
+	
+	function check_reglink(){
+		var setInt = setInterval(display_reglink, 2000);
+		setInterval(function(){
+			var x = document.getElementById("reg_link");
+			var prev_display = x.style.display;
+			setTimeout(function(){
+				var curr_display = x.style.display;
+				if(prev_display !== curr_display)
+					clearInterval(setInt);
+			},1000);
+			setTimeout(function(){
+				clearInterval(setInt);
+			},60000);
+				
+		}
+		, 2000);
+	}
+	
   
   
   $.ajax({
    url:setevents(),
    success:function(){
+   display_reglink();
    setfooter();
 }
 })
