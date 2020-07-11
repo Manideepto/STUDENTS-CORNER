@@ -9,7 +9,8 @@ require("constants.php");
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Education &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
+	<title>Students Portal</title>
+	<link rel="icon" href="/images/iimlogo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
 	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -297,4 +298,3 @@ function addScript() {
 
 	</body>
 </html>
-
