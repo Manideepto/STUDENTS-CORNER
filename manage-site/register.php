@@ -139,24 +139,63 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <datalist id="orgs">
                     <option value="org1">
                     <option value="org2">
-			<option value="eosc">
-		<option value="red-dot">
-		<option value="public-policy">
-		<option value="chaos">
-		<option value="heritage">
-		<option value="finesse">
-		<option value="sash">
-		<option value="consult-club">
-		<option value="decibel">
-		<option value="synergy">
-		<option value="smile">
-		<option value="iimally">
-		<option value="lsd">
-		<option value="ccc">
-		<option value="footloose">
-		<option value="panacea">
-                  
+                    <option value="eosc">
+                    <option value="red-dot">
+                    <option value="public-policy">
+                    <option value="chaos">
+                    <option value="heritage">
+                    <option value="finesse">
+                    <option value="consult-club">
+                    <option value="decibel">
+                    <option value="synergy">
+                    <option value="smile">
+                    <option value="iimally">
+                    <option value="ccc">
+                    <option value="panacea">
+            <!-- premission pending -->
+                    <option value="footloosefam">
+                    <option value="LiterarySymposiumDesk">
+                    <option value="womenleadership">
+                    <option value="prayaas"> 
+                    <option value="share">
+                    <option value="sash">
+                    <option value="excouncil">
+                    <option value="fii">
+                    <option value="optima">
+                    <option value="abacus">
+                    <option value="ideos">
+                    <option value='acads'>
+                    <option value='aerc'>
+                    <option value='beta'>
+                    <option value='cultcomm'>
+                    <option value='eloquence'>
+                    <option value='entrepreneurship-vc-club'>
+                    <option value='equipoise'>
+                    <option value='exchange'>
+                    <option value='fcomm'>
+                    <option value='fsi'>
+                    <option value='fab'>
+                    <option value='gmlc'>
+                    <option value='iimacts'>
+                    <option value='MADClub'>
+                    <option value='mediacell'>
+                    <option value='mentorshipcell'>
+                    <option value='messcomm'>
+                    <option value='decibel'>
+                    <option value='Niche'>
+                    <option value='perspectives'>
+                    <option value='prakriti'>
+                    <option value='prodman'>
+                    <option value='rterc'>
+                    <option value='sportscomm'>
+                    <option value='stargazers'>
+                    <option value='tedxiima'>
+                    <option value='trbs'>
+
+
+
                 </datalist>
+                Contact admin if the club name is not available in the drop down
                 <span class="help-block"><?php echo $org_err; ?></span>
             </div>
 
