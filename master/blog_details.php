@@ -65,7 +65,7 @@
                if (status == "A"){
                    status = "Active";
 
-            string += "<div class='col-md-8 animate-box' style='padding-left: 200px'>\
+            string += "<div class='col-md-8 animate-box'>\
             <div>";
 						
               
