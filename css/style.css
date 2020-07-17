@@ -339,14 +339,15 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-hero .flexslider .slider-text {
   display: table;
   opacity: 0;
-  min-height: 630px;
-  height: 630px;
+  min-height: 330px;
+  height = 40vw;
   z-index: 9;
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner {
   display: table-cell;
   vertical-align: middle;
-  min-height: 700px;
+  min-height: 330px;
+  height = 40vw;
 }
 #fh5co-hero .flexslider .slider-text > .slider-text-inner h1, #fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
   margin: 0;
