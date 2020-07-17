@@ -361,9 +361,10 @@ h1, h2, h3, h4, h5, h6, figure {
 
 //SLIDER
 #fh5co-hero {
-	min-height: 630px;
-	height: 630px;
-	background: $brand-white url(../images/loader.gif) no-repeat center center;
+	min-height: 300px;
+  /* height: 630px; */
+	  height: 40vw;
+	}
 	.btn {
 		font-size: 24px;
 		&.btn-primary {
@@ -383,8 +384,13 @@ h1, h2, h3, h4, h5, h6, figure {
 				background-repeat: no-repeat;
 				background-size: cover;
 				background-position: bottom center;
-				min-height: 630px;
-				height: 630px;
+				min-height: 330px;
+				// height: 630px;
+				height: 40vw;
+				width: 100%;
+				@media screen and (max-width: $screen-sm) {
+					width: 100%;
+				}
 				position: relative;
 				&:after{
 					position: absolute;
@@ -423,14 +429,21 @@ h1, h2, h3, h4, h5, h6, figure {
 		.slider-text {
 			display: table;
 			opacity: 0;
-			min-height: 630px;
-			height: 630px;
+			min-height: 330px;
+			// height: 630px;
+			height: 40vw;
+			
+			width: 100%;
+
 			z-index: 9;
 			> .slider-text-inner {
 				display: table-cell;
 				vertical-align: middle;
-				min-height: 700px;
+				 min-height: 330px;
 				// height: 700px;
+							
+				height: 40vw;
+				width: 100%;
 				h1, h2 {
 					margin: 0;
 					padding: 0;
