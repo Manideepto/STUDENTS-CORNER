@@ -1,11 +1,4 @@
 <?php
-/*
- * @author Shahrukh Khan
- * @website http://www.thesoftwareguy.in
- * @facebook https://www.facebook.com/Thesoftwareguy7
- * @twitter https://twitter.com/thesoftwareguy7
- * @googleplus https://plus.google.com/+thesoftwareguyIn
- */
  include_once  "../constants.php";
  session_start();
  if(!isset($_SESSION['user_email_address']))
@@ -17,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,7 +61,7 @@
 
 <div class="fh5co-loader"></div>
 	
-	<div id="page">
+	<div id="pagez">
 	<nav class="fh5co-nav" role="navigation">
 		<!-- <div class="top">
 			<div class="container">
