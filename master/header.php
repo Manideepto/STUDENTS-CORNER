@@ -46,13 +46,13 @@
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">
 
 	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
+	<link rel="stylesheet" href="../css/flexslider.css">
 
 	<!-- Pricing -->
 	<link rel="stylesheet" href="css/pricing.css">
 
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
