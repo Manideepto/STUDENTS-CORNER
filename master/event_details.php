@@ -88,6 +88,7 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
                  string += '</div>\
                  </div>\
                  </div>'; 
+		 string = string.replace(/\\/g, "");
 
               $("#fh5co-course").html(string); 
           });
