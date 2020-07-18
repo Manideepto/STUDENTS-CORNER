@@ -1,3 +1,14 @@
+<?php
+	include_once  "../constants.php";
+	//require("../libs/config.php");
+
+	if(!isset($_SESSION['user_email_address']))
+	{
+		header('location:'.BASE_URL.'');
+	}
+	
+?>
+
 <head> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
