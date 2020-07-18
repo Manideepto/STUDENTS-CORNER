@@ -15,6 +15,7 @@ unset($_SESSION['user_last_name']);
 unset($_SESSION['user_email_address']);
 unset($_SESSION['user_image']);
 unset($_SESSION['club_login']);
+unset($_SESSION['all_events']);
 
 //Reset OAuth access token    
 $google_client->revokeToken($accesstoken);

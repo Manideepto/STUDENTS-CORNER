@@ -94,11 +94,11 @@ require("constants.php");
 							<span id="org_name">Student Managed Associations</span>
 						</div>
 					</div>
-					<!--<div class="col-xs-6 text-right menu-1">
+					<div class="col-xs-6 text-right menu-1">
 						<ul>
-							<li class="btn-cta"><a href="https://mail.google.com/mail/u/0/?logout&hl=en"><span>Logout from all accounts</span></a></li>
+							<li class="btn-cta"><a href="master/interest?club_login=false&all_events=true"><span>All Events</span></a></li>
 						</ul>
-					</div>-->
+					</div>
 				</div>
 				
 			</div>
