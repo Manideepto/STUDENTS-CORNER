@@ -246,7 +246,7 @@ require("constants.php");
 				</div>\
 				";
                        }); 
-
+		string = string.replace(/\\/g, "");
 
               $("#SMAList").html(string); 
           }); 
