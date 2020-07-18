@@ -22,7 +22,7 @@
 					<!-- <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1 fh5co-widget"> -->
 					<div class="fh5co-contact-info">
 						<ul>
-							<li class="address" id="address">Indian Instiute of Management<br>Ahmedabad</li>
+							<li class="address" id="address">Indian Institute of Management<br>Ahmedabad</li>
 							<!-- <li class="phone" id="phone"><a href="tel://1234567920">+ 1235 2355 98</a></li> -->
 							<li class="email" id="footer_email"><a href="mailto:info@yoursite.com">info@yoursite.com</a></li>
 						</ul>
