@@ -15,6 +15,10 @@ if(isset($_GET["org_id"]))
 {
 	$_SESSION['org_id']=$_GET["org_id"];
 }
+if(isset($_GET["all_events"]))
+{
+	$_SESSION['all_events']=$_GET["all_events"];
+}
 if(isset($_GET["club_login"]) && !isset($_SESSION['club_login']))
 {
 	$_SESSION['club_login']=$_GET["club_login"];
@@ -22,7 +26,13 @@ if(isset($_GET["club_login"]) && !isset($_SESSION['club_login']))
 
 if($_SESSION['club_login']=="true" && empty($_SESSION['event_id']))
 {
-	header('location: ../../'.$_SESSION['org_id'].'');
+	if(isset($_SESSION['all_events']) && $_SESSION['all_events']=="true")
+	{
+		$_SESSION['all_events']=false;
+		header('location: ../../all_events');
+	}
+	else
+		header('location: ../../'.$_SESSION['org_id'].'');
 }
 
 if(!empty($_SESSION['event_id'])){
@@ -126,7 +136,13 @@ if(isset($_GET["code"]))
 			if(!empty($_SESSION['club_login']) && $_SESSION['club_login']=="false")
 			{
 				$_SESSION['club_login']="true";
-				header('location: ../../'.$_SESSION['org_id'].'');
+				if(isset($_SESSION['all_events']) && $_SESSION['all_events']=="true")
+				{
+					$_SESSION['all_events']=false;
+					header('location: ../../all_events');
+				}
+				else
+					header('location: ../../'.$_SESSION['org_id'].'');
 			}
 		}							 
 		else{
