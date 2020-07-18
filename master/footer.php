@@ -109,11 +109,13 @@ email_string += '<a href="mailto:' + value['email'] + '">' + value['email'] + '<
 // linkedin_string += '<a href="' + value['linkedinLink'] + '">' + value['linkedinLink'] + '</a>'
 // instagram_string += '<a href="' + value['instagramLink'] + '">' + value['instagramLink'] + '</a>'
 org_name_title_string = org_name_string = value['org_name'];
-	
+org_name_string = org_name_string.replace(/\\/g, "");
+	  
 facebook_string +=value['facebookLink'];
 instagram_string +=value['instagramLink'];
 linkedin_string +=value['linkedinLink'];
 aboutus_string +=value['about'];
+aboutus_string = aboutus_string.replace(/\\/g, ""); 
 // console.log(aboutus_string);
 if ( value['logo'] == null){
 	logo_string += 'upload/iimlogo.png'
