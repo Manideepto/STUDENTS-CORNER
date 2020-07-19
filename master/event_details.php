@@ -72,14 +72,14 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 			if (value['event_email']!="")			string +=	"<br><br><span>Email : "+value['event_email']+"</span>"
 			if (value['event_phone']!="")			string +=	"<br><span>Phone : "+value['event_phone']+"</span>";
 			if (value['event_addDetails']!="")		string +=	"<br><span>Details  : "+value['event_addDetails']+"</span>";
-			if (value['event_reglink']!="")			string +=	"<br><span><a id='reg_link' style='display:none' href='https://"+value['event_reglink']+"' class='btn btn-primary btn-sm btn-course'>Register</a></span>";
+			if (value['event_reglink']!="")			string +=	"<br><span><a id='reg_link' style='display:none' href='"+value['event_reglink']+"' class='btn btn-primary btn-sm btn-course'>Register</a></span>";
 			
 			string +=	"<br><span><a onclick=window.open('../master/interest?event_id="+value['event_id']+"&org_id="+value['org_id']+"','mywindow',menubar=1,resizable=1);check_reglink(); class='btn btn-primary btn-sm btn-course'>Interest</a></span>"
             string +=		"</div>\
 				</div>\
                 </div>";
               } else{
-                   status ="Inactive";
+                   status ="Inactive";  
                }
                        }); 
 
@@ -88,8 +88,8 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
                  string += '</div>\
                  </div>\
                  </div>'; 
-		 string = string.replace(/\\/g, "");
-
+                 string = string.replace(/\\/g, "");
+                 
               $("#fh5co-course").html(string); 
           });
 		
