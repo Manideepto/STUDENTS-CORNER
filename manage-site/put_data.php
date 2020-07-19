@@ -85,7 +85,7 @@ if ($page =='events'){
             }
             
         } else {
-            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_date`,`event_reglink`,`event_reglink`) VALUES 
+            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_date`,`event_reglink`,`event_forumlink`) VALUES 
                 (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eL, :eforumL)";
 
             try {
