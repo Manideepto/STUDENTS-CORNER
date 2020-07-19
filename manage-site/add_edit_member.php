@@ -84,7 +84,7 @@ include("header.php");
 
     <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">     
-         var org_id = '<?php echo $_SESSION['org_id']; ?>';
+         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
          var page = 'members';
          var mem_id = '<?php echo $_GET['edit']; ?>';
 
@@ -117,7 +117,7 @@ include("header.php");
     <script type="text/javascript"> 
         function put_data(){
             // include id
-         var org_id = '<?php echo $_SESSION['org_id']; ?>';
+         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
          var page = 'members';
         var mem_id = '<?php echo $_GET['edit']; ?>';
 
