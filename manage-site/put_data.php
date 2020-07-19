@@ -32,6 +32,7 @@ if ($page =='events'){
     $event_format = db_prepare_input($_POST["event_format"]);
     $event_phone = db_prepare_input($_POST["event_phone"]);
     $event_reglink = db_prepare_input($_POST["event_reglink"]);
+    $event_forumlink = db_prepare_input($_POST["event_forumlink"]);
     $meta_keywords = db_prepare_input($_POST["meta_keywords"]);
     $status = db_prepare_input($_POST["status"]);
 
@@ -51,6 +52,7 @@ if ($page =='events'){
                     . " `event_format` =  :eF,"
                     . " `event_date` =  :eDt,"
                     . " `event_reglink` =  :eL,"
+                    . " `event_forumlink` =  :eforumL,"
                     . " `org_id` =  :oid"
                     . " WHERE `event_id` = :eid";
             
@@ -66,6 +68,7 @@ if ($page =='events'){
                 $stmt->bindValue(":eF", $event_format);
                 $stmt->bindValue(":eDt", $event_date);
                 $stmt->bindValue(":eL", $event_reglink);
+                $stmt->bindValue(":eforumL", $event_forumlink);
                 $stmt->bindValue(":eid", $event_id);
                 $stmt->bindValue(":oid", $org_id);
 
@@ -82,8 +85,8 @@ if ($page =='events'){
             }
             
         } else {
-            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_date`,`event_reglink`) VALUES 
-                (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eL)";
+            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_date`,`event_reglink`,`event_reglink`) VALUES 
+                (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eL, :eforumL)";
 
             try {
                 $stmt = $DB->prepare($sql);
@@ -97,6 +100,7 @@ if ($page =='events'){
                 $stmt->bindValue(":eF", $event_format);
                 $stmt->bindValue(":eDt", $event_date);
                 $stmt->bindValue(":eL", $event_reglink);
+                $stmt->bindValue(":eforumL", $event_forumlink);
                 $stmt->bindValue(":oid", $org_id);
 
                 $stmt->execute();
