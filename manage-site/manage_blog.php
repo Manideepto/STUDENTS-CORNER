@@ -70,7 +70,7 @@ include("header.php");
             <a> | </a>
             <a href="upload_photo.php?id=<?php echo ($rs["blog_id"]); ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=blogs&name=<?php echo stripslashes($rs["blog_title"]); ?>">Photo</a>
             <a> | </a>  
-                <a href="manage_pages.php?del=<?php echo ($rs["blog_id"]); ?>" onclick="return confirm('Are you sure?');">Delete</a> </td>
+                <a href="manage_blog.php?del=<?php echo ($rs["blog_id"]); ?>" onclick="return confirm('Are you sure?');">Delete</a> </td>
         </tr>
         <?php
     }
