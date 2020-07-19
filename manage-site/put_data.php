@@ -127,7 +127,7 @@ if ($page =='members'){
     $name = db_prepare_input($_POST["name"]);
     $mem_bio = db_prepare_input($_POST["mem_bio"]);
     $email = db_prepare_input($_POST["email"]);
-    $phone = (int)db_prepare_input($_POST["phone"]);
+    $phone = db_prepare_input($_POST["phone"]);
     $status = db_prepare_input($_POST["status"]);
     $meta_keywords = db_prepare_input($_POST["meta_keywords"]);
 
