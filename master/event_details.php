@@ -73,6 +73,7 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 			if (value['event_phone']!="")			string +=	"<br><span>Phone : "+value['event_phone']+"</span>";
 			if (value['event_addDetails']!="")		string +=	"<br><span>Details  : "+value['event_addDetails']+"</span>";
 			if (value['event_reglink']!="")			string +=	"<br><span><a id='reg_link' style='display:none' href='"+value['event_reglink']+"' class='btn btn-primary btn-sm btn-course'>Register</a></span>";
+			if (value['event_Forumlink']!="")			string +=	"<br><span><a id='forum_link' style='display:none' href='"+value['event_forumlink']+"' class='btn btn-primary btn-sm btn-course'>IIMA Forums</a></span>";
 			
 			string +=	"<br><span><a onclick=window.open('../master/interest?event_id="+value['event_id']+"&org_id="+value['org_id']+"','mywindow',menubar=1,resizable=1);check_reglink(); class='btn btn-primary btn-sm btn-course'>Interest</a></span>"
             string +=		"</div>\
@@ -110,15 +111,20 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 		   var result= $.parseJSON(data);
 		   var i=0;
 		   var x = document.getElementById("reg_link");
+       var y = document.getElementById("forum_link");
            $.each( result, function( key, value ) {
 				i++;
 				if (x.style.display === "none") {
 					x.style.display = "inline-block";
-				}
+					y.style.display = "inline-block";
+				
+        }
             });
 			if(x.style.display === "inline-block" && i==0) {
 				x.style.display = "none";
-			}
+				y.style.display = "none";
+			
+      }
  
        });
 	 }
@@ -128,6 +134,7 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 		var setInt = setInterval(display_reglink, 2000);
 		setInterval(function(){
 			var x = document.getElementById("reg_link");
+
 			var prev_display = x.style.display;
 			setTimeout(function(){
 				var curr_display = x.style.display;
