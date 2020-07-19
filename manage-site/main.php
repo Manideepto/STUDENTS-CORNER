@@ -113,6 +113,8 @@ try {
 ?>
 
 <h1>NOTE: Please Fill in the details in this tab before adding other elements. </h1>
+
+<a href="https://docs.google.com/spreadsheets/d/10gIt-en-CXMwoaa0Uzbo-prqhc-cE6UC70fOWog9gwo/edit?usp=sharing"> <h2><u> FAQ </u></h2></a>
 <div class="formField">      
     <form method="post" action="" name="pages">
 
