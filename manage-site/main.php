@@ -30,9 +30,9 @@ if (isset($_POST["sub"])) {
     $instagramLink = db_prepare_input($_POST["instagramLink"]);
     $linkedinLink = db_prepare_input($_POST["linkedinLink"]);
     $orgName = db_prepare_input($_POST["org_name"]);
-    $org_id = db_prepare_input($_SESSION["org_id"]);
+    $org_id = db_prepare_input($_SESSION["Admin_org_id"]);
 
-    if ($tagline2 <> "" && $tagline1 <> "") {
+    if ($tagline2 <> "" && $tagline1 <> "" && $about <>"" && $orgName <>""&& $email <>"") {
 
         if ($id <> "") {
 
@@ -92,7 +92,7 @@ if (isset($_POST["sub"])) {
         
         }
     } else {  
-            $msg = errorMessage("All fields are mandatory");
+            $msg = errorMessage("Please fill the mandatory feilds ");
             }
 
 }
@@ -101,7 +101,7 @@ if (isset($_POST["sub"])) {
 
 include("header.php");
 try {
-    $stmt = $DB->prepare("SELECT * FROM mp_main WHERE org_id = '" .$_SESSION['org_id']. "' LIMIT 1");
+    $stmt = $DB->prepare("SELECT * FROM mp_main WHERE org_id = '" .$_SESSION['Admin_org_id']. "' LIMIT 1");
     $stmt->execute();
     $details = $stmt->fetchAll();
 } catch (Exception $ex) {
@@ -111,8 +111,11 @@ try {
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <?php echo $msg; 
 ?>
+
+<h1>NOTE: Please Fill in the details in this tab before adding other elements. </h1>
 <div class="formField">      
     <form method="post" action="" name="pages">
+
         <input type="hidden" name="id" value="<?php echo $details[0]["id"]; ?>"  />
         <table id="tableForm">
             <tr>
@@ -141,17 +144,17 @@ try {
             </tr>
 
             <tr>
-                <td class="formLeft"><span class="required">*</span>Linked Link: </td>
+                <td class="formLeft"><span class="required"></span>Linked Link: </td>
                 <td><input type="text" name="linkedinLink" id="linkedin" value="<?php echo stripslashes($details[0]["linkedinLink"]); ?>" autocomplete="off" /> </td>
             </tr>
 
             <tr>
-                <td class="formLeft"><span class="required">*</span>Facebook Link: </td>
+                <td class="formLeft"><span class="required"></span>Facebook Link: </td>
                 <td><input type="text" name="facebookLink" id="facebook" class="textboxes" value="<?php echo stripslashes($details[0]["facebookLink"]); ?>" autocomplete="off" /> </td>
             </tr>
 
             <tr>
-                <td class="formLeft"><span class="required">*</span>Instagram Link: </td>
+                <td class="formLeft"><span class="required"></span>Instagram Link: </td>
                 <td><input type="text" name="instagramLink" id="instagram" class="textboxes" value="<?php echo stripslashes($details[0]["instagramLink"]); ?>" autocomplete="off" /> </td>
             </tr>
             <tr>    
@@ -191,11 +194,11 @@ try {
         Upload images    
         </td></tr>
     <tr><td>
-        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=main&name=Logo">Logo</a> | 
-        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=main&name=Photo1">Photo1</a> | 
-        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=main&name=Photo2">Photo2</a> | 
-        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=main&name=Photo3">Photo3</a> | 
-        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=main&name=Photo4">Photo4</a>
+        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=main&name=Logo">Logo</a> | 
+        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=main&name=Photo1">Photo1</a> | 
+        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=main&name=Photo2">Photo2</a> | 
+        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=main&name=Photo3">Photo3</a> | 
+        <a href="upload_photo.php?id=<?php echo $details[0]["id"]; ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=main&name=Photo4">Photo4</a>
         </td></tr>
     
         </table>
