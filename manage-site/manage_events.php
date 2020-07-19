@@ -47,7 +47,7 @@ include("header.php");
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
    
     <script type="text/javascript"> 
-        var org_id = '<?php echo $_SESSION['org_id']; ?>';
+        var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
         var page = 'events';
         var event_id = '';
         $(function(){ 
