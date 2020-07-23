@@ -68,9 +68,9 @@ $fetch_data = true;
 }elseif($_GET['page'] == 'blogs'){
 	
 	if ( is_null($_GET['blog_id'])){
-		$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' ORDER BY date ASC";
+		$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' ORDER BY date DESC";
 		}else{
-			$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' AND blog_id = '" .$_GET['blog_id']. "' ORDER BY date ASC";
+			$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' AND blog_id = '" .$_GET['blog_id']. "' ORDER BY date DESC";
 		}
 $fetch_data = true;
 }
