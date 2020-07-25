@@ -27,7 +27,18 @@ include("header.php");
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-  
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // $("#blog_data").cleditor();
+    // CKEDITOR.replace( 'blog_data' );
+
+    });
+
+</script>
+
+
 <?php echo $msg; ?>
 <div class="formField">      
     <form method="post" action=" " name="events">
@@ -74,6 +85,11 @@ include("header.php");
                 <td><input type="text" name="event_reglink" id="event_reglink"  class="textboxes" /> </td>
             </tr>
             <tr>
+                <td class="formLeft">IIMA Forum Link: </td>
+                <td><input type="text" name="event_forumlink" id="event_forumlink"  class="textboxes" /> </td>
+            </tr>
+
+            <tr>
                 <td class="formLeft">Additional Details: </td>
                 <td><input type="text" name="event_addDetails" id="event_addDetails" placeholder ="link for more rules" class="textboxes" /> </td>
             </tr>
@@ -101,9 +117,15 @@ include("header.php");
     </form>
 </div>
 
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- <script>
+    CKEDITOR.replace( 'event_desc' );
+</script> -->
+
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">     
-         var org_id = '<?php echo $_SESSION['org_id']; ?>';
+         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
          var page = 'events';
          var event_id = '<?php echo $_GET['edit']; ?>';
 
@@ -127,6 +149,7 @@ include("header.php");
                 $("#event_format").val(value['event_format']);
                 $("#event_phone").val(value['event_phone']);
                 $("#event_reglink").val(value['event_reglink']);
+                $("#event_forumlink").val(value['event_forumlink']);
                 $("#meta_keywords").val(value['meta_keywords']);
                 $("#status").val(value['meta_keywords']);
                  });
@@ -140,7 +163,7 @@ include("header.php");
     <script type="text/javascript"> 
         function put_data(){
             // include id
-         var org_id = '<?php echo $_SESSION['org_id']; ?>';
+         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
          var page = 'events';
           var event_id = '<?php echo $_GET['edit']; ?>';
 
@@ -152,6 +175,7 @@ include("header.php");
         var event_format = document.getElementById("event_format").value;
         var event_phone = document.getElementById("event_phone").value;
         var event_reglink = document.getElementById("event_reglink").value;
+        var event_forumlink = document.getElementById("event_forumlink").value;
         var event_keywords = document.getElementById("event_keywords").value;
 
         if (document.getElementById("active_status").checked){
@@ -180,6 +204,7 @@ include("header.php");
             event_format : event_format,
             event_phone : event_phone,
             event_reglink : event_reglink,
+            event_forumlink : event_forumlink,
             meta_keywords : event_keywords,
             status : event_status
         },

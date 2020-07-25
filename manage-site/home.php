@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;        
                 
-                            $_SESSION["org_id"] = $org_id;                            
+                            $_SESSION["Admin_org_id"] = $org_id;                            
                             
                             //add organization id as well
 

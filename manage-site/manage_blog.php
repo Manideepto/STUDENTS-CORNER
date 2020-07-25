@@ -52,7 +52,7 @@ include("header.php");
         <th><strong>Action</strong> </th>
     </tr>
     <?php
-    $sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_SESSION['org_id']. "'  ORDER BY blog_title ASC, blog_id DESC";
+    $sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_SESSION['Admin_org_id']. "'  ORDER BY blog_title ASC, blog_id DESC";
     try {
         $stmt = $DB->prepare($sql);
         $stmt->execute();
@@ -68,9 +68,9 @@ include("header.php");
             <td><?php echo ($rs["status"] == 'A') ? "Active" : "Inactive"; ?></td>
             <td><a href="add_edit_blog.php?edit=<?php echo ($rs["blog_id"]); ?>">Edit</a> 
             <a> | </a>
-            <a href="upload_photo.php?id=<?php echo ($rs["blog_id"]); ?>&org_id=<?php echo $_SESSION['org_id']; ?>&page=blogs&name=<?php echo stripslashes($rs["blog_title"]); ?>">Photo</a>
+            <a href="upload_photo.php?id=<?php echo ($rs["blog_id"]); ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=blogs&name=<?php echo stripslashes($rs["blog_title"]); ?>">Photo</a>
             <a> | </a>  
-                <a href="manage_pages.php?del=<?php echo ($rs["blog_id"]); ?>" onclick="return confirm('Are you sure?');">Delete</a> </td>
+                <a href="manage_blog.php?del=<?php echo ($rs["blog_id"]); ?>" onclick="return confirm('Are you sure?');">Delete</a> </td>
         </tr>
         <?php
     }

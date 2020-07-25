@@ -20,7 +20,7 @@ if(isset($_POST["export"])){
 	try {
         $stmt = $DB->prepare("SELECT * FROM mp_interested WHERE `event_id` = :eid AND `org_id` = :oid");
         $stmt->bindValue(":eid", intval(db_prepare_input($_SESSION['interest_event'])));
-		$stmt->bindValue(":oid", db_prepare_input($_SESSION['org_id']));
+		$stmt->bindValue(":oid", db_prepare_input($_SESSION['Admin_org_id']));
         $stmt->execute();
         $details = $stmt->fetchAll();
 		

@@ -29,7 +29,7 @@ if (isset($_POST["sub"])) {
     // $sort_order = (int) db_prepare_input($_POST["sort_order"]);
     $status = db_prepare_input($_POST["status"]);
     // $page_alias = db_prepare_input($_POST["page_alias"]);
-    $org_id = db_prepare_input($_SESSION["org_id"]);
+    $org_id = db_prepare_input($_SESSION["Admin_org_id"]);
 
     $status = ($status <> "") ? $status : "I";
 
@@ -127,12 +127,20 @@ try {
 <link rel="stylesheet" type="text/css" href="CLEditor/jquery.cleditor.css" />
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script>
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#blog_data").cleditor();
+        // $("#blog_data").cleditor();
+    // CKEDITOR.replace( 'blog_data' );
+
     });
 
 </script>
+
+
+
+
 
 
 <?php echo $msg; ?>
@@ -178,6 +186,9 @@ try {
 </div>
 
 <!--  -->
+<script>     
+    CKEDITOR.replace( 'blog_data' );
+</script>
 
 
 <!--  -->
