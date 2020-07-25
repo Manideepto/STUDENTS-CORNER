@@ -31,19 +31,23 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
     $targetDir = "upload/";
 
     // $fileName = $page."_".$org_id."_".$id.basename($_FILES["file"]["name"]);
-    $fileName = $page."_".$org_id."_".$id.$main_photos.".png";
+    $fileName = $page."_".$org_id."_".$id.$main_photos.time().".png";
+    $fileName = str_replace(" ","",$fileName);
+	$fileName = str_replace("?","",$fileName);
     // $fileName = $fileName.trim();
     // $fileName = $fileName.replace(/[{()}]/g, '');
 
-$targetFilePath ="../".$org_id."/".$targetDir.$fileName;
+   $targetFilePath ="/var/www/html/students/".$org_id."/".$targetDir.$fileName;
+   
+    $localFilePath = $targetDir.$fileName;
+	   
+    // $targetFilePath ="/var/www/html/students/manage-site/upload/".$fileName;
+    //  $targetFilePath = $targetDir.$fileName;
 
-    // $targetFilePath =__DIR__."/".$org_id."/".$targetDir.$fileName;
+    //  $targetFilePath ="../".$org_id."/".$targetDir.$fileName;
+    // $target =$_SERVER['DOCUMENT_ROOT'].'/upload/';
+    // $target =$target.basename($fileName);
 
-//    $targetFilePath =$targetDir.$fileName;
-
-//    $localFilePath = $targetDir.$fileName;
-
-    
     $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
 
     debug_to_console($id);
@@ -51,16 +55,18 @@ $targetFilePath ="../".$org_id."/".$targetDir.$fileName;
     debug_to_console("target path");
     debug_to_console($targetFilePath);
 
-    // chmod($targetFilePath, 0644);
-
     $allowTypes = array('jpg','png','jpeg','gif','pdf');
 
     if(in_array($fileType, $allowTypes)){
-
-    debug_to_console($_FILES['file']['error']);
-
+            debug_to_console("after allow types");
+	            debug_to_console($_FILES["file"]["tmp_name"]);
+     if(file_exists($_FILES["file"]["tmp_name"]))
+     {
+        debug_to_console("file exists");
+        //  echo phpinfo();
+     }     
     if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)){
-	debug_to_console($_FILES['file']['error']);
+            debug_to_console("file moved");
         if ($id <> "") {
             debug_to_console("inside before sql");
 
@@ -73,8 +79,7 @@ $targetFilePath ="../".$org_id."/".$targetDir.$fileName;
         }elseif($page == 'main'){
             $sql = "UPDATE mp_main SET  `".$main_photos."` =  :photo WHERE `id` = :id";
         }
-           
-           
+                      
            debug_to_console("inside sql");
 
             try {
@@ -94,12 +99,9 @@ $targetFilePath ="../".$org_id."/".$targetDir.$fileName;
                 echo errorMessage($ex->getMessage());
             }
             
-        }
-    
+        } 
     }else{
         $msg = errorMessage("Failed to upload image");
-    debug_to_console("inside fail");
-debug_to_console($_FILES['file']['error']); 
     }
 
 }else{
@@ -173,6 +175,17 @@ include("header.php");
         <tr><td>
         <input type="submit" name="clear" value="Remove photo">
         </td></tr>
+
+        <tr> 
+        <pre>
+        Preferred Specification
+        Format          : PNG 
+        Size            : Less than 1 mb
+        Aspect Ratio : Images would be resized automatically to fit the layout. Its good to have the following aspect ratios. However its not manadatory.
+                Logo : 100x100px 
+                Blog & home page images : 1920x630px 
+                Members & Events : 300x400px  <pre>
+        </tr>
 
 
          <tr>
