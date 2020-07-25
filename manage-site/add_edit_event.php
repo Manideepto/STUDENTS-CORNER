@@ -22,11 +22,11 @@ $msg = '';
 include("header.php");
 
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 
 <link rel="stylesheet" type="text/css" href="CLEditor/jquery.cleditor.css" />
 <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
 <script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
 <script type="text/javascript">
@@ -38,7 +38,6 @@ include("header.php");
 
 </script>
 
-
 <?php echo $msg; ?>
 <div class="formField">      
     <form method="post" action=" " name="events">
@@ -49,7 +48,7 @@ include("header.php");
                 <td><input type="text" name="event_title" id="event_title" class="textboxes" autocomplete="off"  /> </td>
             </tr>
             <tr>
-                <td class="formLeft"><span class="required">*</span>Description: </td>
+                <td class="formLeft"><span class="required">*</span>Description: <br>(Limit to 255 chars) </td>
                 <td>
                     <textarea name="event_desc" id="event_desc"></textarea>
                 </td>
@@ -81,12 +80,12 @@ include("header.php");
             </tr>
 
             <tr>
-                <td class="formLeft">Registration Link: </td>
-                <td><input type="text" name="event_reglink" id="event_reglink"  class="textboxes" /> </td>
+                <td class="formLeft"> <span class="required">*</span> Registration Link: </td>
+                <td><input type="text" name="event_reglink" id="event_reglink"  class="textboxes" required> </td>
             </tr>
             <tr>
-                <td class="formLeft">IIMA Forum Link: </td>
-                <td><input type="text" name="event_forumlink" id="event_forumlink"  class="textboxes" /> </td>
+                <td class="formLeft"><span class="required">*</span>IIMA Forum Link: </td>
+                <td><input type="text" name="event_forumlink" id="event_forumlink"  class="textboxes" required> </td>
             </tr>
 
             <tr>
@@ -111,16 +110,12 @@ include("header.php");
             </tr>
             <tr>
                 <td></td>
-                <td> <input type="button" onclick="put_data()" name="sub" value="Save" /> &nbsp;  <input type="button" name="" onclick="javascript:window.location = 'manage_events.php';" value="back to lists" /> </td>
+                <td> <input type="button" onclick="put_data()" name="sub" value="Save" /> &nbsp;  <input type="button" name="" onclick="javascript:window.location = 'manage_events.php';" value="back to lists" /></td>
+                
             </tr>       
         </table>
     </form>
 </div>
-
-<!-- <script>
-    CKEDITOR.replace( 'event_desc' );
-</script> -->
-
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -160,6 +155,11 @@ include("header.php");
 
     </script>
 
+<script>
+    CKEDITOR.replace( 'event_desc' );
+    CKEDITOR.replace( 'event_format' ); 
+</script>
+
     <script type="text/javascript"> 
         function put_data(){
             // include id
@@ -167,12 +167,19 @@ include("header.php");
          var page = 'events';
           var event_id = '<?php echo $_GET['edit']; ?>';
 
+        var iframe1 = document.getElementById("cke_1_contents").getElementsByTagName("iframe")[0];
+        var iframe2 = document.getElementById("cke_2_contents").getElementsByTagName("iframe")[0];
+
         var event_title = document.getElementById("event_title").value;
-        var event_desc = document.getElementById("event_desc").value;
+        // var event_desc = document.getElementById("event_desc").value;
+        var event_desc = iframe1.contentWindow.document.getElementsByTagName("body")[0].innerHTML;
+
         var event_addDetails = document.getElementById("event_addDetails").value;
         var event_date = document.getElementById("event_date").value;
         var event_email = document.getElementById("event_email").value;
-        var event_format = document.getElementById("event_format").value;
+        // var event_format = document.getElementById("event_format").value;
+        var event_format = iframe2.contentWindow.document.getElementsByTagName("body")[0].innerHTML;
+        
         var event_phone = document.getElementById("event_phone").value;
         var event_reglink = document.getElementById("event_reglink").value;
         var event_forumlink = document.getElementById("event_forumlink").value;
@@ -218,6 +225,8 @@ include("header.php");
         }
     
     </script>
+
+
 
 
 <?php
