@@ -9,7 +9,7 @@ require("constants.php");
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Students Portal</title>
+	<title>Students' Corner</title>
 	<link rel="icon" href="/images/iimlogo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
@@ -91,13 +91,20 @@ require("constants.php");
 						<div id="fh5co-logo">
 							<img id="logo" src="images/iimlogo.png" alt="logo" width="60">	
 							<a href="index.php">
-							<span id="org_name">Student Managed Associations</span>
+							<span id="org_name">Students' Corner</span>
 						</div>
 					</div>
 					<div class="col-xs-6 text-right menu-1">
 						<ul>
+							<li class="btn-cta"><a href="https://ltp.iima.ac.in"><span>Academics</span></a></li>
+						</ul>
+						<ul>
 							<li class="btn-cta"><a href="master/interest?club_login=false&all_events=true"><span>All Events</span></a></li>
 						</ul>
+						<ul>
+							<li class="btn-cta"><a href="https://forums.iima.ac.in"><span>IIMA Forums</span></a></li>
+						</ul>
+
 					</div>
 				</div>
 				
@@ -167,6 +174,11 @@ require("constants.php");
 					<p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
 				</div>
 			</div> -->
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2><b>Students Managed Associations<b></h2>
+				</div>
+			</div>
 			<div class="row" id="SMAList">
 				<div class="col-md-3 col-sm-6 text-center animate-box">
 					<div class="services">
@@ -246,9 +258,10 @@ require("constants.php");
 				</div>\
 				";
                        }); 
-		string = string.replace(/\\/g, "");
 
-              $("#SMAList").html(string); 
+			string = string.replace(/\\/g, "");
+            
+			  $("#SMAList").html(string); 
           }); 
    }
 
