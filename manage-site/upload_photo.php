@@ -34,6 +34,8 @@ if(isset($_POST["submit"]) && !empty($_FILES["file"]["name"])){
     $fileName = $page."_".$org_id."_".$id.$main_photos.time().".png";
     $fileName = str_replace(" ","",$fileName);
 	$fileName = str_replace("?","",$fileName);
+	$fileName = str_replace("(","",$fileName);
+	$fileName = str_replace(")","",$fileName);
     // $fileName = $fileName.trim();
     // $fileName = $fileName.replace(/[{()}]/g, '');
 
