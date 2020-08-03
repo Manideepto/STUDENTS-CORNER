@@ -7,6 +7,10 @@ include('config.php');
 require("../../libs/config.php");
 
 $login_button = '';
+if(isset($_GET["url"]))
+{
+	$_SESSION['url']=$_GET["url"];
+}
 if(isset($_GET["event_id"]))
 {
 	$_SESSION['event_id']=$_GET["event_id"];
@@ -32,7 +36,12 @@ if($_SESSION['club_login']=="true" && empty($_SESSION['event_id']))
 		header('location: ../../all_events');
 	}
 	else
-		header('location: ../../'.$_SESSION['org_id'].'');
+	{
+		if(isset($_SESSION['url']))
+			header('location: '.$_SESSION['url'].'');
+		else
+			header('location: ../../'.$_SESSION['org_id'].'');
+	}
 }
 
 if(!empty($_SESSION['event_id'])){
@@ -142,7 +151,12 @@ if(isset($_GET["code"]))
 					header('location: ../../all_events');
 				}
 				else
-					header('location: ../../'.$_SESSION['org_id'].'');
+				{
+					if(isset($_SESSION['url']))
+						header('location: '.$_SESSION['url'].'');
+					else
+						header('location: ../../'.$_SESSION['org_id'].'');
+				}
 			}
 		}							 
 		else{

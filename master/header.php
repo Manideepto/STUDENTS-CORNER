@@ -3,7 +3,7 @@
  session_start();
  if(!isset($_SESSION['user_email_address']))
  {
-	header('location:'.BASE_URL.'');
+	header('location:'.BASE_URL.'/master/interest?org_id=&event_id=&club_login=false&url=https://'.$_SERVER[HTTP_HOST].''.$_SERVER[REQUEST_URI].'');
  } 
 ?>
 
