@@ -104,6 +104,9 @@ require("constants.php");
 						<ul>
 							<li class="btn-cta"><a href="https://forums.iima.ac.in"><span>IIMA Forums</span></a></li>
 						</ul>
+						<ul>
+							<li class="btn-cta"><a href="https://www.youtube.com/watch?time_continue=2&v=6w_PkYOkz_k&feature=emb_logo"><span>Site Demo</span></a></li>
+						</ul>
 
 					</div>
 				</div>
