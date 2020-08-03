@@ -97,12 +97,9 @@ require("constants.php");
 					<div class="col-xs-6 text-right menu-1">
 						<ul>
 							<li class="btn-cta"><a href="https://ltp.iima.ac.in"><span>Academics</span></a></li>
-						</ul>
-						<ul>
 							<li class="btn-cta"><a href="master/interest?club_login=false&all_events=true"><span>All Events</span></a></li>
-						</ul>
-						<ul>
 							<li class="btn-cta"><a href="https://forums.iima.ac.in"><span>IIMA Forums</span></a></li>
+							<li class="btn-cta"><a href="https://www.youtube.com/watch?time_continue=2&v=6w_PkYOkz_k&feature=emb_logo"><span>Site Demo</span></a></li>
 						</ul>
 
 					</div>
