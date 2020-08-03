@@ -94,7 +94,7 @@ $fetch_data = true;
 }
 elseif($_GET['page'] == 'all_events'){
 	
-		$sql = $sql = "SELECT * FROM mp_events ORDER BY event_title ASC, event_id DESC";
+		$sql = $sql = "SELECT * FROM mp_events ORDER BY event_date DESC, count_interested DESC, event_title ASC, event_id DESC";
 		
 $fetch_data = true;
 }
@@ -103,23 +103,23 @@ elseif($_GET['page'] == 'org_events'){
 		if($_GET['interest_sel'] == 'interest')
 		{
 			if($_GET['org_id']== 'all')
-				$sql = "SELECT * FROM mp_events e INNER JOIN mp_interested i ON e.org_id = i.org_id AND e.event_id = i.event_id WHERE i.interested_email = '" .$_SESSION['user_email_address']. "' ORDER BY e.event_title ASC, e.event_id DESC";
+				$sql = "SELECT * FROM mp_events e INNER JOIN mp_interested i ON e.org_id = i.org_id AND e.event_id = i.event_id WHERE i.interested_email = '" .$_SESSION['user_email_address']. "' ORDER BY e.event_date DESC, e.count_interested DESC, e.event_title ASC, e.event_id DESC";
 			else
-				$sql = "SELECT * FROM mp_events e INNER JOIN mp_interested i ON e.org_id = i.org_id AND e.event_id = i.event_id WHERE e.org_id = '" .$_GET['org_id']. "' AND i.interested_email = '" .$_SESSION['user_email_address']. "' ORDER BY e.event_title ASC, e.event_id DESC";
+				$sql = "SELECT * FROM mp_events e INNER JOIN mp_interested i ON e.org_id = i.org_id AND e.event_id = i.event_id WHERE e.org_id = '" .$_GET['org_id']. "' AND i.interested_email = '" .$_SESSION['user_email_address']. "' ORDER BY e.event_date DESC, e.count_interested DESC, e.event_title ASC, e.event_id DESC";
 		}
 		else if($_GET['interest_sel'] == 'not_interested')
 		{
 			if($_GET['org_id']== 'all')
-				$sql = "SELECT * FROM mp_events WHERE event_id <> ALL (SELECT event_id from mp_interested WHERE interested_email = '" .$_SESSION['user_email_address']. "')";
+				$sql = "SELECT * FROM mp_events WHERE event_id <> ALL (SELECT event_id from mp_interested WHERE interested_email = '" .$_SESSION['user_email_address']. "') ORDER BY event_date DESC, count_interested DESC";
 			else
-				$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' AND event_id <> ALL (SELECT event_id from mp_interested WHERE interested_email = '" .$_SESSION['user_email_address']. "')";
+				$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' AND event_id <> ALL (SELECT event_id from mp_interested WHERE interested_email = '" .$_SESSION['user_email_address']. "') ORDER BY event_date DESC, count_interested DESC";
 			}
 		else if($_GET['interest_sel'] == 'all')
 		{
 			if($_GET['org_id']== 'all')
-				$sql = "SELECT * FROM mp_events ORDER BY event_title ASC, event_id DESC";
+				$sql = "SELECT * FROM mp_events ORDER BY event_date DESC, count_interested DESC, event_title ASC, event_id DESC";
 			else
-				$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' ORDER BY event_title ASC, event_id DESC";
+				$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' ORDER BY event_date DESC, count_interested DESC, event_title ASC, event_id DESC";
 		
 		}
 		
