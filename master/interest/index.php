@@ -38,7 +38,11 @@ if($_SESSION['club_login']=="true" && empty($_SESSION['event_id']))
 	else
 	{
 		if(isset($_SESSION['url']))
-			header('location: '.$_SESSION['url'].'');
+		{
+			$url = $_SESSION['url'];
+			unset($_SESSION['url']);
+			header('location: '.$url.'');
+		}
 		else
 			header('location: ../../'.$_SESSION['org_id'].'');
 	}
@@ -153,7 +157,11 @@ if(isset($_GET["code"]))
 				else
 				{
 					if(isset($_SESSION['url']))
-						header('location: '.$_SESSION['url'].'');
+					{
+						$url = $_SESSION['url'];
+						unset($_SESSION['url']);
+						header('location: '.$url.'');
+					}
 					else
 						header('location: ../../'.$_SESSION['org_id'].'');
 				}
