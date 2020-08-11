@@ -75,7 +75,7 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 			if (value['event_reglink']!="")			string +=	"<br><span><a id='reg_link' style='display:none' href='"+value['event_reglink']+"' class='btn btn-primary btn-sm btn-course'>Register</a></span>";
 			if (value['event_Forumlink']!="")			string +=	"<br><span><a id='forum_link' style='display:none' href='"+value['event_forumlink']+"' class='btn btn-primary btn-sm btn-course'>IIMA Forums</a></span>";
 			
-			string +=	"<br><span><a onclick=window.open('../master/interest?event_id="+value['event_id']+"&org_id="+value['org_id']+"','mywindow',menubar=1,resizable=1);check_reglink(); class='btn btn-primary btn-sm btn-course'>Interest</a></span>"
+			string +=	"<br><span><a id='interested_button' onclick=window.open('../master/interest?event_id="+value['event_id']+"&org_id="+value['org_id']+"','mywindow',menubar=1,resizable=1);check_reglink(); class='btn btn-primary btn-sm btn-course'>Add to Interest  <i class='icon-star2'></a></span>"
             string +=		"</div>\
 				</div>\
                 </div>";
@@ -111,19 +111,25 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
 		   var result= $.parseJSON(data);
 		   var i=0;
 		   var x = document.getElementById("reg_link");
-       var y = document.getElementById("forum_link");
+           var y = document.getElementById("forum_link");
+           var y = document.getElementById("forum_link");           
+           var z = document.getElementById("interested_button");
+
            $.each( result, function( key, value ) {
 				i++;
 				if (x.style.display === "none") {
 					x.style.display = "inline-block";
 					y.style.display = "inline-block";
-				
+                    z.innerHTML = "Interested <i class='icon-star3'>";
+
+                    // <li><a id="footer_instagram" href="#"><i class="icon-star3"></i></a></li>		
         }
             });
 			if(x.style.display === "inline-block" && i==0) {
 				x.style.display = "none";
 				y.style.display = "none";
-			
+                z.innerHTML = "Add to Interest  <i class='icon-star2'>";
+
       }
  
        });
