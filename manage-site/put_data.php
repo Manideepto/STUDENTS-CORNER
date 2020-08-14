@@ -39,7 +39,7 @@ if ($page =='events'){
     $status = ($status <> "") ? $status : "I";
 
 
-    if ($event_title <> "" &&$event_desc <>"" && $event_email<>"" && $status <> "" && $event_reglink <> "" && $event_forumlink <>"" ) {
+    if ($event_title <> "" && $event_desc <>"" && $event_email<>"" && $status <> "" && $event_forumlink <>"" ) {
         if ($event_id <> "") {
 
             $sql = "UPDATE mp_events SET `event_addDetails` =  :eAD, "
@@ -201,7 +201,7 @@ if ($page =='members'){
           
         }
     } else {
-        echo "All fields are mandatory (members)";
+        echo "Please fill in all mandatory fields";
     }
 
 
