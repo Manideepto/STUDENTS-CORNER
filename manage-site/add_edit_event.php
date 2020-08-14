@@ -80,7 +80,7 @@ include("header.php");
             </tr>
 
             <tr>
-                <td class="formLeft"> <span class="required">*</span> Registration Link: </td>
+                <td class="formLeft"> Registration Link: </td>
                 <td><input type="text" name="event_reglink" id="event_reglink"  class="textboxes" required> </td>
             </tr>
             <tr>
