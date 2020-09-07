@@ -96,6 +96,7 @@ require("constants.php");
 					</div>
 					<div class="col-xs-6 text-right menu-1">
 						<ul>
+							<li class="btn-cta"><a href="https://sites.google.com/iima.ac.in/pgp-digital-office/students-corner"><span>PGP Digital Office</span></a></li>
 							<li class="btn-cta"><a href="https://ltp.iima.ac.in"><span>Academics</span></a></li>
 							<li class="btn-cta"><a href="master/interest?club_login=false&all_events=true"><span>All Events</span></a></li>
 							<li class="btn-cta"><a href="https://forums.iima.ac.in"><span>IIMA Forums</span></a></li>
