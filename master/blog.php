@@ -32,7 +32,9 @@
           /* from result create a string of data and append to the div */
  
           
-	       $.each( result, function( key, value ) { 
+	       $.each( result, function( key, value ) {
+			if(value["blog_data"].includes("<iframe"))
+				value["blog_data"]="IFrame Tag";
 			string += '<div class="col-lg-4 col-md-4">\
 					<div class="fh5co-blog animate-box">';
 						string += "<a href='blog_details.php?blog_id="+value['blog_id']+ " ' class='blog-img-holder' style='background-image: url("+value['photo'] + ");'>"+
