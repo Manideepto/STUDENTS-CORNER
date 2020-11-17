@@ -46,7 +46,9 @@ $fetch_data= true;
 $fetch_data = true;
 }elseif($_GET['page'] == 'index'){
 	
-			 $sql = "SELECT org_id, org_name, logo, about FROM mp_main ORDER BY org_id";
+			include(update_activity.php); 
+
+			 $sql = "SELECT org_id, org_name, logo, about FROM mp_main ORDER BY activity DESC";
 			
 		
 $fetch_data = true;
