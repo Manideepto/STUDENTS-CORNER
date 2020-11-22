@@ -4,6 +4,7 @@
 	{
 		header('location:'.BASE_URL.'/master/interest?org_id=&event_id=&club_login=false&url=https://'.$_SERVER[HTTP_HOST].''.$_SERVER[REQUEST_URI].'');
 	}
+
 ?>
 
 <div class="container">
@@ -71,6 +72,8 @@
                        }); 
 
             // //   }
+
+            if(string =="") string +="<h1> Login to view private Events </h1>";
 
                  string += '</div>\
                  </div>\
