@@ -16,6 +16,18 @@ require("../libs/config.php");
 
 $fetch_data = false;
 
+if ($_GET['page'] == 'admin_events'){
+
+	 if ( is_null($_GET['event_id'])){
+		//get all
+		 $sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' ORDER BY event_title ASC, event_id DESC";
+		}else{
+	 	$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' AND event_id = '" .$_GET['event_id']. "' ORDER BY event_title ASC, event_id DESC";
+		
+	}
+	$fetch_data= true;
+}
+
 if ($_GET['page'] == 'events'){
 
 	 if ( is_null($_GET['event_id'])){
@@ -73,7 +85,7 @@ $fetch_data = true;
 }
 elseif($_GET['page'] == 'upcoming_events'){
 			
-			$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "'AND status='A'" . $privacy . " ORDER BY event_date DESC, count_interested DESC LIMIT 2";	
+			$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "'AND status='A'" . $privacy . " ORDER BY event_datetime DESC, count_interested DESC LIMIT 2";	
 
 $fetch_data = true;
 }
