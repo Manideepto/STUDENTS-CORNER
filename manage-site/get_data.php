@@ -1,19 +1,14 @@
 <?php
-/*
- * @author Shahrukh Khan
- * @website http://www.thesoftwareguy.in
- * @facebook https://www.facebook.com/Thesoftwareguy7
- * @twitter https://twitter.com/thesoftwareguy7
- * @googleplus https://plus.google.com/+thesoftwareguyIn
- */
 
 session_start();
 	
-	// Check if the user is logged in, if not then redirect him to login page
-	// if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-	// 	header("location: home.php");
-	// 	exit;
-	// }
+if(!isset($_SESSION['user_email_address']))  //iima member not logged in 
+{
+	$privacy = " AND privacy = 'P' ";   //display only public items
+}
+else{
+	$privacy = " AND privacy IS NOT NULL"; //display all
+}
 
 
 require("../libs/config.php");
@@ -25,10 +20,10 @@ if ($_GET['page'] == 'events'){
 
 	 if ( is_null($_GET['event_id'])){
 		//get all
-		 $sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' ORDER BY event_title ASC, event_id DESC";
+		 $sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "'". $privacy .  " ORDER BY event_title ASC, event_id DESC";
 	
 	}else{
-	 	$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' AND event_id = '" .$_GET['event_id']. "' ORDER BY event_title ASC, event_id DESC";
+	 	$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "' AND event_id = '" .$_GET['event_id']. "'". $privacy .  " ORDER BY event_title ASC, event_id DESC";
 		
 	}
 $fetch_data= true;
@@ -70,21 +65,21 @@ $fetch_data = true;
 }elseif($_GET['page'] == 'blogs'){
 	
 	if ( is_null($_GET['blog_id'])){
-		$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' ORDER BY date DESC";
+		$sql = "SELECT * FROM mp_blogs WHERE org_id = '" . $_GET['org_id'] . "'". $privacy .  " ORDER BY date DESC";
 		}else{
-			$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' AND blog_id = '" .$_GET['blog_id']. "' ORDER BY date DESC";
+			$sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "' AND blog_id = '" .$_GET['blog_id']."'" .$privacy.  " ORDER BY date DESC";
 		}
 $fetch_data = true;
 }
 elseif($_GET['page'] == 'upcoming_events'){
 			
-			$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "'AND status='A' ORDER BY event_date DESC, count_interested DESC LIMIT 2";	
+			$sql = "SELECT * FROM mp_events WHERE org_id = '" .$_GET['org_id']. "'AND status='A'" . $privacy . " ORDER BY event_date DESC, count_interested DESC LIMIT 2";	
 
 $fetch_data = true;
 }
 elseif($_GET['page'] == 'recent_blogs'){
 	
-			 $sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "'AND status='A' ORDER BY date DESC LIMIT 2";	
+			 $sql = "SELECT * FROM mp_blogs WHERE org_id = '" .$_GET['org_id']. "'AND status='A' " . $privacy . " ORDER BY date DESC LIMIT 2";	
 
 $fetch_data = true;
 }
