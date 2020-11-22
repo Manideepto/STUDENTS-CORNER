@@ -249,7 +249,7 @@ require("constants.php");
 							<i ><img id='logo' src='" +value['org_id']+ "/" + value['logo'] + "' alt='logo' width='50'></i>\
 						</span>\
 						<div class='desc'>\
-							<h3><a href='master/interest?org_id="+value['org_id']+"&event_id="+nill+"&club_login=false'>" + value['org_name'] + "</a></h3>\
+							<h3><a href=' https://students.iima.ac.in/"+value['org_id'] + " '>"  + value['org_name'] + " </a></h3>\
 							<p>" + value['about'].substring(0,128) + "</p>\
 						</div>\
 					</div>\
