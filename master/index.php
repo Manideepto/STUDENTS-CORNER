@@ -184,7 +184,7 @@
 					recent_event_title1.text = value['event_title'];
 					recent_event_title1.href="event_details.php?event_id="+value['event_id'];
 					$("#recent_event_desc1").html("<p>"+value['event_desc'].substring(0,200)+"</p>");
-					$("#recent_event_date1").html("<span>"+value['event_date'].substring(8,10)+ "<br>" + mon[value['event_date'].substring(5,7)] +"</span>");
+					$("#recent_event_date1").html("<span>"+value['event_datetime'].substring(8,10)+ "<br>" + mon[value['event_datetime'].substring(5,7)] +"</span>");
 					// recent_event_img1.style.backgroundImage =  "url(" + value['event_thumbnail'] + ")";
 					// recent_event_img1.href="event_details.php?event_id="+value['event_id'];
 					recent_event_details1.href="event_details.php?event_id="+value['event_id'];
