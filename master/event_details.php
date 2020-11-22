@@ -1,14 +1,15 @@
 <?php
 include_once  "../constants.php";
-if(!isset($_SESSION['user_email_address']))
-{
-	header('location:'.BASE_URL.'/master/interest?org_id=&event_id=&club_login=false&url=https://'.$_SERVER[HTTP_HOST].''.$_SERVER[REQUEST_URI].'');
-}
+// if(!isset($_SESSION['user_email_address']))
+// {
+// 	header('location:'.BASE_URL.'/master/interest?org_id=&event_id=&club_login=false&url=https://'.$_SERVER[HTTP_HOST].''.$_SERVER[REQUEST_URI].'');
+// }
 
-if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
+// if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
     
-    //populate
-}
+//     //populate
+// }
+
 ?>   
  
 <div class="container">
@@ -85,6 +86,7 @@ if (isset($_GET["event_id"]) && $_GET["event_id"] != "") {
                        }); 
 
             // //   }
+            if(string =="") string +="<h1> Login to view the Event </h1>";
 
                  string += '</div>\
                  </div>\
