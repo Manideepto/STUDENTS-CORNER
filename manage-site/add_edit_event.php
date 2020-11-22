@@ -76,7 +76,7 @@ include("header.php");
 
             <tr>
                 <td class="formLeft">Date: </td>
-                <td><input type="date" name="event_date" id="event_date" class="textboxes"/> </td>
+                <td><input type="datetime-local" name="event_datetime" id="event_datetime" class="textboxes"/> </td>
             </tr>
 
             <tr>
@@ -103,11 +103,20 @@ include("header.php");
                     <?php } else { ?>
                         <label><input type="radio" name="status" id="active_status" value="A" checked  />Active</label> &nbsp; <label><input type="radio" name="status" value="I"  />Inactive</label>
                     <?php } ?>
-
-
-
                 </td>
             </tr>
+
+            <tr>
+                <td class="formLeft">Privacy : </td>
+                <td>     
+                    <?php if (isset($_REQUEST["edit"]) && $_REQUEST["edit"] != "") { ?>
+                        <label><input type="checkbox" name="privacy" id="active_privacy" value="P" <?php echo ($details[0]["privacy"] == 'P') ? 'checked' : ''; ?>  />Public</label> &nbsp; 
+                    <?php } else { ?>
+                        <label><input type="checkbox" name="privacy" id="active_privacy" value="P"/> Public</label> &nbsp;
+                    <?php } ?>
+                </td>
+            </tr>
+
             <tr>
                 <td></td>
                 <td> <input type="button" onclick="put_data()" name="sub" value="Save" /> &nbsp;  <input type="button" name="" onclick="javascript:window.location = 'manage_events.php';" value="back to lists" /></td>
@@ -121,7 +130,7 @@ include("header.php");
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">     
          var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
-         var page = 'events';
+         var page = 'admin_events';
          var event_id = '<?php echo $_GET['edit']; ?>';
 
        $(document).ready(function(){
@@ -139,14 +148,28 @@ include("header.php");
                 $("#event_title").val(value['event_title']);
                 $("#event_desc").val(value['event_desc']);
                 $("#event_addDetails").val(value['event_addDetails']);
-                $("#event_date").val(value['event_date']);
+                // document.getElementById("event_datetime").value = value['event_datetime'] ;
+                $('input[type=datetime-local]').val( value['event_datetime'].replace(" ","T") ) ;
                 $("#event_email").val(value['event_email']);
                 $("#event_format").val(value['event_format']);
                 $("#event_phone").val(value['event_phone']);
                 $("#event_reglink").val(value['event_reglink']);
                 $("#event_forumlink").val(value['event_forumlink']);
                 $("#meta_keywords").val(value['meta_keywords']);
-                $("#status").val(value['meta_keywords']);
+                
+                if(value['status'] == 'A'){
+                    $("#active_status").prop( "checked", true );
+                }else{
+                    $("#status").prop( "checked", true );
+                }
+
+                if(value['privacy'] == 'P'){
+                    $("#active_privacy").prop( "checked", true );
+                }else{
+                    $("#active_privacy").prop( "checked", false );
+                }
+
+
                  });
                 });
         }
@@ -175,7 +198,7 @@ include("header.php");
         var event_desc = iframe1.contentWindow.document.getElementsByTagName("body")[0].innerHTML;
 
         var event_addDetails = document.getElementById("event_addDetails").value;
-        var event_date = document.getElementById("event_date").value;
+        var event_datetime = document.getElementById("event_datetime").value;
         var event_email = document.getElementById("event_email").value;
         // var event_format = document.getElementById("event_format").value;
         var event_format = iframe2.contentWindow.document.getElementsByTagName("body")[0].innerHTML;
@@ -191,6 +214,11 @@ include("header.php");
                  var event_status = 'I';
              }
        
+        if (document.getElementById("active_privacy").checked){
+            var privacy_status = 'P';
+        }else{
+            var privacy_status = 'R';
+        }
 
         if (event_title == '' || event_desc == '') {
         alert("Please Fill All Fields");
@@ -206,14 +234,15 @@ include("header.php");
             event_title : event_title,
             event_desc : event_desc,
             event_addDetails : event_addDetails,
-            event_date : event_date,
+            event_datetime : event_datetime,
             event_email : event_email,
             event_format : event_format,
             event_phone : event_phone,
             event_reglink : event_reglink,
             event_forumlink : event_forumlink,
             meta_keywords : event_keywords,
-            status : event_status
+            status : event_status,
+            privacy : privacy_status
         },
         cache: false,
         success: function(html) {
