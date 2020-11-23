@@ -29,14 +29,7 @@ include("header.php");
 <script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script>
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        // $("#blog_data").cleditor();
-    // CKEDITOR.replace( 'blog_data' );
 
-    });
-
-</script>
 
 <?php echo $msg; ?>
 <div class="formField">      
@@ -191,10 +184,20 @@ include("header.php");
 
     </script>
 
-<script>
+<!-- 
+<script type="text/javascript">
+    $(document).ready(function() {
+        // $("#blog_data").cleditor();
+    // CKEDITOR.replace( 'blog_data' );
     CKEDITOR.replace( 'event_desc' );
     CKEDITOR.replace( 'event_format' ); 
-</script>
+    });
+</script> -->
+
+<!-- <script type="text/javascript">
+    CKEDITOR.replace( 'event_desc' );
+    CKEDITOR.replace( 'event_format' ); 
+</script> -->
 
 <script type="text/javascript">
     // Client ID and API key from the Developer Console
@@ -300,9 +303,7 @@ include("header.php");
         var event_forumlink = document.getElementById("event_forumlink").value;
         var event_keywords = document.getElementById("event_keywords").value;
         var event_calenderLink = document.getElementById("event_calenderLink").value;
-        console.log("evnet calender link is :   ")
-        console.log(event_calenderLink);
-
+  
         if (document.getElementById("active_status").checked){
                  var event_status = 'A';
              }else{
@@ -406,6 +407,10 @@ include("header.php");
     </script>
 
 
+<script type="text/javascript">
+    CKEDITOR.replace( 'event_desc' );
+    CKEDITOR.replace( 'event_format' ); 
+</script>
 
 
 <?php
