@@ -27,16 +27,20 @@ if ($page =='events'){
     $event_title = db_prepare_input($_POST["event_title"]);
     $event_desc = db_prepare_input($_POST["event_desc"]);
     $event_addDetails = db_prepare_input($_POST["event_addDetails"]);
-    $event_date = db_prepare_input($_POST["event_date"]);
+    $event_datetime = db_prepare_input($_POST["event_datetime"]);
+    $event_datetime_end = db_prepare_input($_POST["event_datetime_end"]);
     $event_email = db_prepare_input($_POST["event_email"]);
     $event_format = db_prepare_input($_POST["event_format"]);
     $event_phone = db_prepare_input($_POST["event_phone"]);
     $event_reglink = db_prepare_input($_POST["event_reglink"]);
     $event_forumlink = db_prepare_input($_POST["event_forumlink"]);
+    $event_calenderLink = db_prepare_input($_POST["event_calendarLink"]);
     $meta_keywords = db_prepare_input($_POST["meta_keywords"]);
     $status = db_prepare_input($_POST["status"]);
+    $privacy = db_prepare_input($_POST["privacy"]);
 
     $status = ($status <> "") ? $status : "I";
+    $privacy = ($privacy <> "") ? $privacy : "R";
 
 
     if ($event_title <> "" && $event_desc <>"" && $event_email<>"" && $status <> "" && $event_forumlink <>"" ) {
@@ -50,10 +54,13 @@ if ($page =='events'){
                     . " `event_phone` =  :eP,"
                     . " `event_email` =  :eE,"
                     . " `event_format` =  :eF,"
-                    . " `event_date` =  :eDt,"
+                    . " `event_datetime` =  :eDt,"
+                    . " `event_datetime_end` =  :eDt_end,"
                     . " `event_reglink` =  :eL,"
                     . " `event_forumlink` =  :eforumL,"
-                    . " `org_id` =  :oid"
+                    . " `event_calenderLink` =  :ecalenderL,"
+                    . " `org_id` =  :oid,"
+                    . " `privacy` =  :privacy"
                     . " WHERE `event_id` = :eid";
             
             try {
@@ -66,11 +73,14 @@ if ($page =='events'){
                 $stmt->bindValue(":eP", $event_phone);
                 $stmt->bindValue(":eE", $event_email);
                 $stmt->bindValue(":eF", $event_format);
-                $stmt->bindValue(":eDt", $event_date);
+                $stmt->bindValue(":eDt", $event_datetime);
+                $stmt->bindValue(":eDt_end", $event_datetime_end);
                 $stmt->bindValue(":eL", $event_reglink);
                 $stmt->bindValue(":eforumL", $event_forumlink);
+                $stmt->bindValue(":ecalenderL", $event_calenderLink);
                 $stmt->bindValue(":eid", $event_id);
                 $stmt->bindValue(":oid", $org_id);
+                $stmt->bindValue(":privacy", $privacy);
 
                 $stmt->execute();
                 if ($stmt->rowCount() > 0) {
@@ -85,8 +95,8 @@ if ($page =='events'){
             }
             
         } else {
-            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_date`,`event_reglink`,`event_forumlink`) VALUES 
-                (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eL, :eforumL)";
+            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_datetime`,`event_datetime_end`,`event_reglink`,`event_forumlink`,`privacy`,`event_calenderLink`) VALUES 
+                (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eDt_end, :eL, :eforumL,:privacy, :ecalenderL)";
 
             try {
                 $stmt = $DB->prepare($sql);
@@ -98,10 +108,13 @@ if ($page =='events'){
                 $stmt->bindValue(":eP", $event_phone);
                 $stmt->bindValue(":eE", $event_email);
                 $stmt->bindValue(":eF", $event_format);
-                $stmt->bindValue(":eDt", $event_date);
+                $stmt->bindValue(":eDt", $event_datetime);
+                $stmt->bindValue(":eDt_end", $event_datetime_end);
                 $stmt->bindValue(":eL", $event_reglink);
                 $stmt->bindValue(":eforumL", $event_forumlink);
+                $stmt->bindValue(":ecalenderL", $event_calenderLink);
                 $stmt->bindValue(":oid", $org_id);
+                $stmt->bindValue(":privacy", $privacy);
 
                 $stmt->execute();
                 if ($stmt->rowCount() > 0) {
