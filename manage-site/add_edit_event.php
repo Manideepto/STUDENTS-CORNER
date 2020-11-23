@@ -75,8 +75,13 @@ include("header.php");
             </tr>
 
             <tr>
-                <td class="formLeft">Date: </td>
+                <td class="formLeft">Event Start Date-Time: </td>
                 <td><input type="datetime-local" name="event_datetime" id="event_datetime" class="textboxes"/> </td>
+            </tr>
+
+            <tr>
+                <td class="formLeft">Event End Date-Time: </td>
+                <td><input type="datetime-local" name="event_datetime_end" id="event_datetime_end" class="textboxes"/> </td>
             </tr>
 
             <tr>
@@ -92,7 +97,11 @@ include("header.php");
                 <td class="formLeft">Additional Details: </td>
                 <td><input type="text" name="event_addDetails" id="event_addDetails" placeholder ="link for more rules" class="textboxes" /> </td>
             </tr>
-            
+
+            <tr>
+                <td class="formLeft">Event Calender Link: </td>
+                <td><div id="event_calenderLink" ></div></td>
+            </tr>
          
             <tr>
                 <td class="formLeft"><span class="required">*</span>Status : </td>
@@ -116,6 +125,9 @@ include("header.php");
                     <?php } ?>
                 </td>
             </tr>
+
+            <button id="authorize_button">Authorize for calender</button>
+            <button id="signout_button">Remove authorization</button>
 
             <tr>
                 <td></td>
@@ -148,14 +160,15 @@ include("header.php");
                 $("#event_title").val(value['event_title']);
                 $("#event_desc").val(value['event_desc']);
                 $("#event_addDetails").val(value['event_addDetails']);
-                // document.getElementById("event_datetime").value = value['event_datetime'] ;
-                $('input[type=datetime-local]').val( value['event_datetime'].replace(" ","T") ) ;
+                $('#event_datetime').val( value['event_datetime'].replace(" ","T") ) ;
+                $('#event_datetime_end').val( value['event_datetime_end'].replace(" ","T") ) ;
                 $("#event_email").val(value['event_email']);
                 $("#event_format").val(value['event_format']);
                 $("#event_phone").val(value['event_phone']);
                 $("#event_reglink").val(value['event_reglink']);
                 $("#event_forumlink").val(value['event_forumlink']);
                 $("#meta_keywords").val(value['meta_keywords']);
+                $("#event_calenderLink").val(value['event_calenderLink']);
                 
                 if(value['status'] == 'A'){
                     $("#active_status").prop( "checked", true );
@@ -183,6 +196,84 @@ include("header.php");
     CKEDITOR.replace( 'event_format' ); 
 </script>
 
+<script type="text/javascript">
+    // Client ID and API key from the Developer Console
+    // var CLIENT_ID = '404380349928-3caac5fkaaeifu1ocjbvvgj4jjmkhms0.apps.googleusercontent.com';  // ccc
+
+    var CLIENT_ID = '681539149110-vr56sujllg18f8dtmcqntje7r0ro0kcc.apps.googleusercontent.com';  //asitav
+
+    // Array of API discovery doc URLs for APIs used by the quickstart
+    var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+    // Authorization scopes required by the API; multiple scopes can be
+    // included, separated by spaces.
+    var SCOPES = "https://www.googleapis.com/auth/calendar";
+
+    var authorizeButton = document.getElementById('authorize_button');
+    var signoutButton = document.getElementById('signout_button');
+
+    /**
+    *  On load, called to load the auth2 library and API client library.
+    */
+    function handleClientLoad() {
+    gapi.load('client:auth2', initClient);
+    }
+
+    /**
+    *  Initializes the API client library and sets up sign-in state
+    *  listeners.
+    */
+    function initClient() {
+    gapi.client.init({
+        clientId: CLIENT_ID,
+        discoveryDocs: DISCOVERY_DOCS,
+        scope: SCOPES
+    }).then(function () {
+        // Listen for sign-in state changes.
+        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+        // Handle the initial sign-in state.
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        authorizeButton.onclick = handleAuthClick;
+        signoutButton.onclick = handleSignoutClick;
+    }, function(error) {
+        console.log(JSON.stringify(error, null, 2));
+    });
+    }
+
+    /**
+    *  Called when the signed in status changes, to update the UI
+    *  appropriately. After a sign-in, the API is called.
+    */
+    function updateSigninStatus(isSignedIn) {
+    if (isSignedIn) {
+        authorizeButton.style.display = 'none';
+        signoutButton.style.display = 'block';
+    } else {
+        authorizeButton.style.display = 'block';
+        signoutButton.style.display = 'none';
+    }
+    }
+
+    /**
+    *  Sign in the user upon button click.
+    */
+    function handleAuthClick(event) {
+        gapi.auth2.getAuthInstance().signIn();
+    }
+
+    function handleSignoutClick(event) {
+        gapi.auth2.getAuthInstance().signOut();
+    }
+
+</script>
+
+<script async defer src="https://apis.google.com/js/api.js"
+    onload="this.onload=function(){};handleClientLoad()"
+    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+</script>
+
+<script src="https://apis.google.com/js/platform.js"></script>
     <script type="text/javascript"> 
         function put_data(){
             // include id
@@ -199,6 +290,7 @@ include("header.php");
 
         var event_addDetails = document.getElementById("event_addDetails").value;
         var event_datetime = document.getElementById("event_datetime").value;
+        var event_datetime_end = document.getElementById("event_datetime_end").value;
         var event_email = document.getElementById("event_email").value;
         // var event_format = document.getElementById("event_format").value;
         var event_format = iframe2.contentWindow.document.getElementsByTagName("body")[0].innerHTML;
@@ -207,6 +299,9 @@ include("header.php");
         var event_reglink = document.getElementById("event_reglink").value;
         var event_forumlink = document.getElementById("event_forumlink").value;
         var event_keywords = document.getElementById("event_keywords").value;
+        var event_calenderLink = document.getElementById("event_calenderLink").value;
+        console.log("evnet calender link is :   ")
+        console.log(event_calenderLink);
 
         if (document.getElementById("active_status").checked){
                  var event_status = 'A';
@@ -220,10 +315,55 @@ include("header.php");
             var privacy_status = 'R';
         }
 
-        if (event_title == '' || event_desc == '') {
+        if (event_title == '' || event_desc == ''|| event_datetime == '' || event_datetime_end == '') {
         alert("Please Fill All Fields");
         } else {
-        // AJAX code to submit form.
+
+
+        function createEvent(callback){
+                if (event_calenderLink == ' ' || event_calenderLink == undefined) {
+                    console.log("inside call back funciton");
+                    var event = { 
+                    'summary': event_title,
+                    'location': '',
+                    'description': event_desc,
+                    'start': {
+                        'dateTime': event_datetime,
+                        'timeZone': 'Asia/Kolkata'
+                    },
+                    'end': {
+                        'dateTime': event_datetime_end,
+                        'timeZone': 'Asia/Kolkata'
+                    },
+                    'attendees': [
+                        {'email': 'lpage@example.com'},
+                        {'email': 'sbrin@example.com'}
+                    ],
+                    'reminders': {
+                        'useDefault': false,
+                        'overrides': [
+                        {'method': 'email', 'minutes': 24 * 60},
+                        {'method': 'popup', 'minutes': 10}
+                        ]
+                    }
+                    };
+
+                    var request = gapi.client.calendar.events.insert({
+                        'calendarId': 'primary',
+                        'resource': event
+                    });
+
+                    request.execute(function(event) {
+                        console.log('Event created: ' + event.htmlLink);
+                        event_calenderLink = event.htmlLink;
+                        callback();
+                    });    
+                }
+            }
+    
+        
+      
+        function submitForm(){
         $.ajax({
         type: "POST",
         url: "put_data.php",
@@ -235,22 +375,32 @@ include("header.php");
             event_desc : event_desc,
             event_addDetails : event_addDetails,
             event_datetime : event_datetime,
+            event_datetime_end : event_datetime_end,
             event_email : event_email,
             event_format : event_format,
             event_phone : event_phone,
             event_reglink : event_reglink,
             event_forumlink : event_forumlink,
+            event_calenderLink: event_calenderLink,
             meta_keywords : event_keywords,
             status : event_status,
             privacy : privacy_status
         },
         cache: false,
         success: function(html) {
-        alert(html);
-        }
+                alert(html);
+                }
         });
+
+        }
+
+        // createEvent(submitForm);
+        submitForm();
+
         }
         return false;
+        
+
         }
     
     </script>
