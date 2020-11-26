@@ -1,9 +1,13 @@
 <?php
 	include_once  "../constants.php";
-	// if(!isset($_SESSION['user_email_address']))
-	// {
-	// 	header('location:'.BASE_URL.'/master/interest?org_id=&event_id=&club_login=false&url=https://'.$_SERVER[HTTP_HOST].''.$_SERVER[REQUEST_URI].'');
-	// }
+	if(!isset($_SESSION['user_email_address']))
+	{
+		// header('location:'.BASE_URL.'/master/interest?org_id=&event_id=&club_login=false&url=https://'.$_SERVER[HTTP_HOST].''.$_SERVER[REQUEST_URI].'');
+    echo '<div align="center">
+    <span style="font-size: 20px; color:#000000;  background-color:#e0e0eb; width:100%" >
+    Login with IIMA credentitals to view all content</span>
+   </div>';
+  }
 ?>
 
 <div id="fh5co-blog">
@@ -62,10 +66,7 @@
             
 				}); 
       
-      if(string =='<div class="container">\
-           <div class="row">') string +="<h1> Login to view private blogs </h1>";
-
-       string += '</div></div>';
+        string += '</div></div>';
 
       //  string = string.replace(/upload/g,'upload/');
 
