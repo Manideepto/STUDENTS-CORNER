@@ -25,9 +25,10 @@ include("header.php");
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 
 <link rel="stylesheet" type="text/css" href="CLEditor/jquery.cleditor.css" />
-<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script>
+<!-- <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> -->
+<!-- <script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script> -->
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>  
 
 
 
@@ -93,7 +94,15 @@ include("header.php");
 
             <tr>
                 <td class="formLeft">Event Calender Link: </td>
-                <td><div id="event_calenderLink" ></div></td>
+                <td>
+                    <button id="authorize_button" style="display: none;">Authorize</button>
+                    <button id="signout_button" style="display: none;">Sign Out</button>
+                    <input type="text" name="event_calenderLink" id="event_calenderLink" class="textboxes" />
+
+                    <button name="calender_button" id="calender_button" style="display: none;" class="btn btn-primary" onclick="location.href='' " type="button"> Add to Calendar </button>
+
+                </td>
+
             </tr>
          
             <tr>
@@ -116,11 +125,9 @@ include("header.php");
                     <?php } else { ?>
                         <label><input type="checkbox" name="privacy" id="active_privacy" value="P"/> Public</label> &nbsp;
                     <?php } ?>
-                </td>
+                    (Check this option if you would like this event to be visible without signin form IIMA accounts)
+                </td>     
             </tr>
-
-            <button id="authorize_button">Authorize for calender</button>
-            <button id="signout_button">Remove authorization</button>
 
             <tr>
                 <td></td>
@@ -184,105 +191,117 @@ include("header.php");
 
     </script>
 
-<!-- 
-<script type="text/javascript">
-    $(document).ready(function() {
-        // $("#blog_data").cleditor();
-    // CKEDITOR.replace( 'blog_data' );
-    CKEDITOR.replace( 'event_desc' );
-    CKEDITOR.replace( 'event_format' ); 
-    });
-</script> -->
 
-<!-- <script type="text/javascript">
-    CKEDITOR.replace( 'event_desc' );
-    CKEDITOR.replace( 'event_format' ); 
-</script> -->
 
 <script type="text/javascript">
-    // Client ID and API key from the Developer Console
-    // var CLIENT_ID = '404380349928-3caac5fkaaeifu1ocjbvvgj4jjmkhms0.apps.googleusercontent.com';  // ccc
+      // Client ID and API key from the Developer Console
+      var CLIENT_ID = '468949168558-m5vvvn1qv97s372tgoiu32e4f2lr3vvr.apps.googleusercontent.com';
+      var API_KEY = 'AIzaSyBwcLFZjg_UoYtf93TA4d4REdioqfg6tKs';
 
-    var CLIENT_ID = '681539149110-vr56sujllg18f8dtmcqntje7r0ro0kcc.apps.googleusercontent.com';  //asitav
+      // Array of API discovery doc URLs for APIs used by the quickstart
+      var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
-    // Array of API discovery doc URLs for APIs used by the quickstart
-    var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      var SCOPES = "https://www.googleapis.com/auth/calendar";
 
-    // Authorization scopes required by the API; multiple scopes can be
-    // included, separated by spaces.
-    var SCOPES = "https://www.googleapis.com/auth/calendar";
+      var authorizeButton = document.getElementById('authorize_button');
+      var signoutButton = document.getElementById('signout_button');
+      var genLinkButton = document.getElementById('generate_link_button');
 
-    var authorizeButton = document.getElementById('authorize_button');
-    var signoutButton = document.getElementById('signout_button');
+      /**
+       *  On load, called to load the auth2 library and API client library.
+       */
+      function handleClientLoad() {
+        gapi.load('client:auth2', initClient);
+      }
 
-    /**
-    *  On load, called to load the auth2 library and API client library.
-    */
-    function handleClientLoad() {
-    gapi.load('client:auth2', initClient);
-    }
+      /**
+       *  Initializes the API client library and sets up sign-in state
+       *  listeners.
+       */
+      function initClient() {
+        gapi.client.init({
+          apiKey: API_KEY,
+          clientId: CLIENT_ID,
+          discoveryDocs: DISCOVERY_DOCS,
+          scope: SCOPES
+        }).then(function () {
+          // Listen for sign-in state changes.
+          gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 
-    /**
-    *  Initializes the API client library and sets up sign-in state
-    *  listeners.
-    */
-    function initClient() {
-    gapi.client.init({
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES
-    }).then(function () {
-        // Listen for sign-in state changes.
-        gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+          // Handle the initial sign-in state.
+          updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+          authorizeButton.onclick = handleAuthClick;
+          signoutButton.onclick = handleSignoutClick;
+        }, function(error) {
+          appendPre(JSON.stringify(error, null, 2));
+        });
+      }
 
-        // Handle the initial sign-in state.
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-        authorizeButton.onclick = handleAuthClick;
-        signoutButton.onclick = handleSignoutClick;
-    }, function(error) {
-        console.log(JSON.stringify(error, null, 2));
-    });
-    }
+      /**
+       *  Called when the signed in status changes, to update the UI
+       *  appropriately. After a sign-in, the API is called.
+       */
+      function updateSigninStatus(isSignedIn) {
+        if (isSignedIn) {
+          authorizeButton.style.display = 'none';
+          signoutButton.style.display = 'block';
+          genLinkButton.style.display = 'block';
+        } else {
+          authorizeButton.style.display = 'block';
+          signoutButton.style.display = 'none';
+        }
+      }
 
-    /**
-    *  Called when the signed in status changes, to update the UI
-    *  appropriately. After a sign-in, the API is called.
-    */
-    function updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-        authorizeButton.style.display = 'none';
-        signoutButton.style.display = 'block';
-    } else {
-        authorizeButton.style.display = 'block';
-        signoutButton.style.display = 'none';
-    }
-    }
-
-    /**
-    *  Sign in the user upon button click.
-    */
-    function handleAuthClick(event) {
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick(event) {
         gapi.auth2.getAuthInstance().signIn();
-    }
+      }
 
-    function handleSignoutClick(event) {
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick(event) {
         gapi.auth2.getAuthInstance().signOut();
-    }
+      }
 
-</script>
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node. Used to display the results of the API call.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('content');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+
+    </script>
+
 
 <script async defer src="https://apis.google.com/js/api.js"
-    onload="this.onload=function(){};handleClientLoad()"
-    onreadystatechange="if (this.readyState === 'complete') this.onload()">
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
 </script>
 
 <script src="https://apis.google.com/js/platform.js"></script>
+
     <script type="text/javascript"> 
         function put_data(){
-            // include id
-         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
-         var page = 'events';
-          var event_id = '<?php echo $_GET['edit']; ?>';
+
+        var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
+        var page = 'events';
+        var event_id = '<?php echo $_GET['edit']; ?>';
 
         var iframe1 = document.getElementById("cke_1_contents").getElementsByTagName("iframe")[0];
         var iframe2 = document.getElementById("cke_2_contents").getElementsByTagName("iframe")[0];
@@ -321,9 +340,14 @@ include("header.php");
         } else {
 
 
+      
+            // event_calenderLink == '' || event_calenderLink == undefined
+
         function createEvent(callback){
-                if (event_calenderLink == ' ' || event_calenderLink == undefined) {
-                    console.log("inside call back funciton");
+            console.log("inside create event funciton");
+                if (true) {
+                    console.log("inside create event funciton, after check");
+
                     var event = { 
                     'summary': event_title,
                     'location': '',
@@ -336,17 +360,14 @@ include("header.php");
                         'dateTime': event_datetime_end,
                         'timeZone': 'Asia/Kolkata'
                     },
-                    'attendees': [
-                        {'email': 'lpage@example.com'},
-                        {'email': 'sbrin@example.com'}
-                    ],
                     'reminders': {
                         'useDefault': false,
                         'overrides': [
                         {'method': 'email', 'minutes': 24 * 60},
                         {'method': 'popup', 'minutes': 10}
                         ]
-                    }
+                    },
+                    'visibility':'public',
                     };
 
                     var request = gapi.client.calendar.events.insert({
@@ -356,15 +377,24 @@ include("header.php");
 
                     request.execute(function(event) {
                         console.log('Event created: ' + event.htmlLink);
+                        $("#event_calenderLink").val(event.htmlLink);
                         event_calenderLink = event.htmlLink;
+                        $("#calender_button").style.display = 'block';
+                        $("#calender_button").onclick = 'location.href= " ' + event.htmlLink + '"';
+
+                        // <button id="calender_button" style="display: none;" class="btn btn-primary" onclick="location.href='' " type="button"> Add to Calendar </button>
+
                         callback();
                     });    
                 }
             }
     
         
-      
+            
         function submitForm(){
+  
+        // event_calenderLink = document.getElementById("event_calenderLink").value;
+  
         $.ajax({
         type: "POST",
         url: "put_data.php",
@@ -395,8 +425,8 @@ include("header.php");
 
         }
 
-        // createEvent(submitForm);
-        submitForm();
+        createEvent(submitForm);
+        // submitForm();
 
         }
         return false;
