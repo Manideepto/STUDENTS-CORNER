@@ -1,12 +1,4 @@
 <?php
-/*
- * @author Shahrukh Khan
- * @website http://www.thesoftwareguy.in
- * @facebook https://www.facebook.com/Thesoftwareguy7
- * @twitter https://twitter.com/thesoftwareguy7
- * @googleplus https://plus.google.com/+thesoftwareguyIn
- */
-
 session_start();
 	
 // Check if the user is logged in, if not then redirect him to login page
@@ -22,15 +14,16 @@ $msg = '';
 include("header.php");
 
 ?>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
 
 <link rel="stylesheet" type="text/css" href="CLEditor/jquery.cleditor.css" />
 <!-- <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> -->
 <!-- <script type="text/javascript" src="CLEditor/jquery.cleditor.min.js"></script> -->
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<!-- 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
-
+<!-- <h1> Under construction, please contact CCC if urgent </h1> -->
 
 <?php echo $msg; ?>
 <div class="formField">      
@@ -91,19 +84,6 @@ include("header.php");
                 <td class="formLeft">Additional Details: </td>
                 <td><input type="text" name="event_addDetails" id="event_addDetails" placeholder ="link for more rules" class="textboxes" /> </td>
             </tr>
-
-            <tr>
-                <td class="formLeft">Event Calender Link: </td>
-                <td>
-                    <button id="authorize_button" style="display: none;">Authorize</button>
-                    <button id="signout_button" style="display: none;">Sign Out</button>
-                    <input type="text" name="event_calenderLink" id="event_calenderLink" class="textboxes" />
-
-                    <button name="calender_button" id="calender_button" style="display: none;" class="btn btn-primary" onclick="location.href='' " type="button"> Add to Calendar </button>
-
-                </td>
-
-            </tr>
          
             <tr>
                 <td class="formLeft"><span class="required">*</span>Status : </td>
@@ -131,12 +111,84 @@ include("header.php");
 
             <tr>
                 <td></td>
-                <td> <input type="button" onclick="put_data()" name="sub" value="Save" /> &nbsp;  <input type="button" name="" onclick="javascript:window.location = 'manage_events.php';" value="back to lists" /></td>
+                <td> <input type="button" onclick="put_data('submit')" name="sub" value="Save" /> &nbsp;  <input type="button" name="" onclick="javascript:window.location = 'manage_events.php';" value="back to lists" /></td>
                 
             </tr>       
         </table>
     </form>
 </div>
+
+<br>
+<br>
+
+<div class="formField">
+    <!-- <form name="event_calender"> -->
+        <table id="tableForm" >
+                Use this option to Generate a google calendar link for the event which can be copy pasted into the Email body
+            <tr>
+                <td class="formLeft">Event calendar Link: </td>
+                <td>
+                    <button id="authorize_button" style="display: none;">Authorize</button>
+                    <button id="signout_button" style="display: none;">Sign Out</button>
+                    <button id="generate_link_button" style="display: none;" onclick="put_data('calLink')" >Generate Calendar Link</button>
+                    <input type="text" name="event_calendarLink" id="event_calendarLink" class="textboxes" />
+                    <p> Click on Save after Generating the link  </p>
+                </td>
+            </tr>
+
+            <tr id="copy_btn_row">                
+                <td></td>
+                <td  style="text-align:center">
+                <p> ..... </p>
+                    <!-- <button name="calendar_button" id="calendar_button" style="display: block;" class="btn btn-primary" href="https://www.google.com" type="button"> Add to Calendar </button> -->
+                    <a href="https://google.com" id="calendar_button" class="btn btn-info btn-lg">
+                    Add to calendar
+                    </a>
+                    <p>....</p>
+                </td>
+
+            </tr>
+
+            <tr>            
+            <td></td>
+            <td>
+                <button type="button"  class="btn btn-default btn-sm" onclick="CopyToClipboard('calendar_button')">
+                <span class="glyphicon glyphicon-link">  <p id="copy_btn"> Click to Select "Add to Calendar" Button </p> </span>
+                </button>   
+            </td>
+            </tr>
+
+        </table>
+    <!-- </form> -->
+</div>
+
+<script type="text/javascript">
+
+     function CopyToClipboard(){
+        console.log("trying to copy");
+        var copy_text = document.getElementById("copy_btn_row");
+        var range = document.createRange();
+        range.selectNode(copy_text);
+        window.getSelection().addRange(range);
+
+        // var btn_text = ' <button type="button" id="copy_btn" class="btn btn-default btn-sm" onclick="CopyToClipboard("calendar_button")">Press Ctrl+C to copy, and paste it in your email body';
+
+        var btn_text = 'Press Ctrl+C to copy, and paste it in your email body';
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+            document.getElementById("copy_btn").innerHTML= btn_text;
+
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+
+        };
+
+</script>
+
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -168,8 +220,11 @@ include("header.php");
                 $("#event_reglink").val(value['event_reglink']);
                 $("#event_forumlink").val(value['event_forumlink']);
                 $("#meta_keywords").val(value['meta_keywords']);
-                $("#event_calenderLink").val(value['event_calenderLink']);
-                
+                $("#event_calendarLink").val(value['event_calendarLink']);
+            
+                $("#calendar_button").attr("href",value['event_calendarLink']);
+                    
+
                 if(value['status'] == 'A'){
                     $("#active_status").prop( "checked", true );
                 }else{
@@ -248,9 +303,11 @@ include("header.php");
           authorizeButton.style.display = 'none';
           signoutButton.style.display = 'block';
           genLinkButton.style.display = 'block';
+
         } else {
           authorizeButton.style.display = 'block';
           signoutButton.style.display = 'none';
+          genLinkButton.style.display = 'none';
         }
       }
 
@@ -280,12 +337,6 @@ include("header.php");
         pre.appendChild(textContent);
       }
 
-      /**
-       * Print the summary and start datetime/date of the next ten events in
-       * the authorized user's calendar. If no events are found an
-       * appropriate message is printed.
-       */
-
     </script>
 
 
@@ -297,7 +348,7 @@ include("header.php");
 <script src="https://apis.google.com/js/platform.js"></script>
 
     <script type="text/javascript"> 
-        function put_data(){
+        function put_data(operation){
 
         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
         var page = 'events';
@@ -321,7 +372,7 @@ include("header.php");
         var event_reglink = document.getElementById("event_reglink").value;
         var event_forumlink = document.getElementById("event_forumlink").value;
         var event_keywords = document.getElementById("event_keywords").value;
-        var event_calenderLink = document.getElementById("event_calenderLink").value;
+        var event_calendarLink = document.getElementById("event_calendarLink").value;
   
         if (document.getElementById("active_status").checked){
                  var event_status = 'A';
@@ -335,15 +386,14 @@ include("header.php");
             var privacy_status = 'R';
         }
 
-        if (event_title == '' || event_desc == ''|| event_datetime == '' || event_datetime_end == '') {
-        alert("Please Fill All Fields");
-        } else {
+        // event_calenderLink == '' || event_calenderLink == undefined
+        function Event_Added_alert(){
+            console.log("alerting");
+            alert("Calender Event Added. Please check you calendar");
+            // put_data('submit');
+        }
 
-
-      
-            // event_calenderLink == '' || event_calenderLink == undefined
-
-        function createEvent(callback){
+        function createEvent(){
             console.log("inside create event funciton");
                 if (true) {
                     console.log("inside create event funciton, after check");
@@ -374,27 +424,25 @@ include("header.php");
                         'calendarId': 'primary',
                         'resource': event
                     });
-
+                    
                     request.execute(function(event) {
                         console.log('Event created: ' + event.htmlLink);
-                        $("#event_calenderLink").val(event.htmlLink);
-                        event_calenderLink = event.htmlLink;
-                        $("#calender_button").style.display = 'block';
-                        $("#calender_button").onclick = 'location.href= " ' + event.htmlLink + '"';
+                        $("#event_calendarLink").val(event.htmlLink);
+                        event_calendarLink = String(event.htmlLink);
+                       
+                        $("#calendar_button").style.display = 'block';
+                        $("#calendar_button").attr("href",value['event_calendarLink']);
+            
+                        // // Event_Added_alert();
+                        // alert("Calender Event Added. Please save the event as well");
 
-                        // <button id="calender_button" style="display: none;" class="btn btn-primary" onclick="location.href='' " type="button"> Add to Calendar </button>
-
-                        callback();
                     });    
                 }
             }
-    
         
-            
+        
         function submitForm(){
-  
-        // event_calenderLink = document.getElementById("event_calenderLink").value;
-  
+            console.log("inside submit form");
         $.ajax({
         type: "POST",
         url: "put_data.php",
@@ -412,7 +460,7 @@ include("header.php");
             event_phone : event_phone,
             event_reglink : event_reglink,
             event_forumlink : event_forumlink,
-            event_calenderLink: event_calenderLink,
+            event_calendarLink: event_calendarLink,
             meta_keywords : event_keywords,
             status : event_status,
             privacy : privacy_status
@@ -425,14 +473,29 @@ include("header.php");
 
         }
 
-        createEvent(submitForm);
-        // submitForm();
+        if (event_title == '' || event_desc == ''|| event_datetime == '' || event_datetime_end == '') {
+        alert("Please Fill All Fields");
+        } else {
 
+            if (operation =='submit'){
+                console.log("calling create submit function");
+                submitForm();
+            }
+            if (operation =='calLink'){
+                console.log("calling create event function");
+                createEvent();
+                }
+                
         }
+
         return false;
-        
 
         }
+
+
+       
+        
+        
     
     </script>
 
