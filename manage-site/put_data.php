@@ -34,7 +34,7 @@ if ($page =='events'){
     $event_phone = db_prepare_input($_POST["event_phone"]);
     $event_reglink = db_prepare_input($_POST["event_reglink"]);
     $event_forumlink = db_prepare_input($_POST["event_forumlink"]);
-    $event_calenderLink = db_prepare_input($_POST["event_calendarLink"]);
+    $event_calendarLink = db_prepare_input($_POST["event_calendarLink"]);
     $meta_keywords = db_prepare_input($_POST["meta_keywords"]);
     $status = db_prepare_input($_POST["status"]);
     $privacy = db_prepare_input($_POST["privacy"]);
@@ -58,7 +58,7 @@ if ($page =='events'){
                     . " `event_datetime_end` =  :eDt_end,"
                     . " `event_reglink` =  :eL,"
                     . " `event_forumlink` =  :eforumL,"
-                    . " `event_calenderLink` =  :ecalenderL,"
+                    . " `event_calendarLink` =  :ecalendarL,"
                     . " `org_id` =  :oid,"
                     . " `privacy` =  :privacy"
                     . " WHERE `event_id` = :eid";
@@ -77,7 +77,7 @@ if ($page =='events'){
                 $stmt->bindValue(":eDt_end", $event_datetime_end);
                 $stmt->bindValue(":eL", $event_reglink);
                 $stmt->bindValue(":eforumL", $event_forumlink);
-                $stmt->bindValue(":ecalenderL", $event_calenderLink);
+                $stmt->bindValue(":ecalendarL", $event_calendarLink);
                 $stmt->bindValue(":eid", $event_id);
                 $stmt->bindValue(":oid", $org_id);
                 $stmt->bindValue(":privacy", $privacy);
@@ -95,8 +95,8 @@ if ($page =='events'){
             }
             
         } else {
-            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_datetime`,`event_datetime_end`,`event_reglink`,`event_forumlink`,`privacy`,`event_calenderLink`) VALUES 
-                (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eDt_end, :eL, :eforumL,:privacy, :ecalenderL)";
+            $sql = "INSERT INTO mp_events (`org_id`, `event_addDetails` ,`event_title`, `meta_keywords`, `event_desc`,`status`,`event_phone`,`event_email`,`event_format`,`event_datetime`,`event_datetime_end`,`event_reglink`,`event_forumlink`,`privacy`,`event_calendarLink`) VALUES 
+                (:oid, :eAD,:eT,:mkey,:eD, :status, :eP, :eE,:eF,:eDt, :eDt_end, :eL, :eforumL,:privacy, :ecalendarL)";
 
             try {
                 $stmt = $DB->prepare($sql);
@@ -112,7 +112,7 @@ if ($page =='events'){
                 $stmt->bindValue(":eDt_end", $event_datetime_end);
                 $stmt->bindValue(":eL", $event_reglink);
                 $stmt->bindValue(":eforumL", $event_forumlink);
-                $stmt->bindValue(":ecalenderL", $event_calenderLink);
+                $stmt->bindValue(":ecalendarL", $event_calendarLink);
                 $stmt->bindValue(":oid", $org_id);
                 $stmt->bindValue(":privacy", $privacy);
 
