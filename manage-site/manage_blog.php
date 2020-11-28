@@ -66,11 +66,12 @@ include("header.php");
             <td ><?php echo stripslashes($rs["blog_title"]); ?></td>
             <td ><?php echo stripslashes($rs["date"]); ?></td>
             <td><?php echo ($rs["status"] == 'A') ? "Active" : "Inactive"; ?></td>
-            <td><a href="add_edit_blog.php?edit=<?php echo ($rs["blog_id"]); ?>">Edit</a> 
+            <td>
+            <a href="add_edit_blog.php?edit=<?php echo ($rs["blog_id"]); ?>"><span class='glyphicon glyphicon-pencil'></span></a> 
             <a> | </a>
-            <a href="upload_photo.php?id=<?php echo ($rs["blog_id"]); ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=blogs&name=<?php echo stripslashes($rs["blog_title"]); ?>">Photo</a>
+            <a href="upload_photo.php?id=<?php echo ($rs["blog_id"]); ?>&org_id=<?php echo $_SESSION['Admin_org_id']; ?>&page=blogs&name=<?php echo stripslashes($rs["blog_title"]); ?>"><span class='glyphicon glyphicon-picture'></span></a>
             <a> | </a>  
-                <a href="manage_blog.php?del=<?php echo ($rs["blog_id"]); ?>" onclick="return confirm('Are you sure?');">Delete</a> </td>
+                <a href="manage_blog.php?del=<?php echo ($rs["blog_id"]); ?>" onclick="return confirm('Are you sure?');"><span class='glyphicon glyphicon-trash'></span></a> </td>
         </tr>
         <?php
     }
