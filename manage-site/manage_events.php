@@ -15,6 +15,7 @@ session_start();
 		exit;
 	}
 
+
 require("../libs/config.php");
 $pageTitle = "Manage Events";    // to change
 $msg = '';
@@ -41,14 +42,23 @@ include("header.php");
 <?php echo $msg;?>
 <div class="title" style="text-align:right;"><a href="add_edit_event.php">Add Event</a></div>
 
+
 <div id="event_records"> <div>
-  
+<div>
+<p> Pencil icon as a link:
+        <a href="#">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+    </p>    
+</div>
+
     
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-   
+    
+    
     <script type="text/javascript"> 
         var org_id = '<?php echo $_SESSION['Admin_org_id']; ?>';
-        var page = 'events';
+        var page = 'admin_events';
         var event_id = '';
         $(function(){ 
 
@@ -81,12 +91,13 @@ include("header.php");
                 }
 
                 string += "<tr> <td>"+value['event_title'] + "</td><td>" +value['event_email']+'</td>  \
-                        <td>'+value['event_phone']+"</td><td>"+ status+"</td> <td><a href='add_edit_event.php?edit="+value['event_id']+"'>Edit</a> | \
-                        <a href='upload_photo.php?id="+value['event_id']+"&org_id="+value['org_id']+"&page=events&name="+value['event_title']+"'>Photo</a> | \
-                        <a href='manage_events.php?del="+value['event_id']+"'>Delete</a> | \
-						<a href='interested_events.php?interest_event="+value['event_id']+"&name="+value['event_title']+"'>Interested People List</a> | \
-						<a href='send_email.php?email_event="+value['event_id']+"&name="+value['event_title']+"'>Send mail</a></td> \
-						<td>"+value['count_interested']+"</td></tr>"  ;                   
+                        <td>'+value['event_phone']+"</td><td>"+ status+"</td> <td>\
+                        <a href='add_edit_event.php?edit="+value['event_id']+"'> <span class='glyphicon glyphicon-pencil'></span></a> | \
+                        <a href='upload_photo.php?id="+value['event_id']+"&org_id="+value['org_id']+"&page=events&name="+value['event_title']+"'><span class='glyphicon glyphicon-picture'></span></a> | \
+                        <a href='manage_events.php?del="+value['event_id']+"'> <span class='glyphicon glyphicon-trash'></span></a> | \
+                        <a href='send_email.php?email_event="+value['event_id']+"&name="+value['event_title']+"'>Send mail</a> |\
+                        </td> \
+                        <td>"+value['count_interested']+" |<a href='interested_events.php?interest_event="+value['event_id']+"&name="+value['event_title']+"'> List</a></td></tr>"  ;                              
                   }); 
 
                   string += '</table>'; 
@@ -98,6 +109,8 @@ include("header.php");
 
 
 
+
 <?php
 include("footer.php");
 ?>
+
