@@ -62,12 +62,12 @@ include("header.php");
             </tr>
 
             <tr>
-                <td class="formLeft">Event Start Date-Time: </td>
+                <td class="formLeft"><span class="required">*</span>Event Start Date-Time: </td>
                 <td><input type="datetime-local" name="event_datetime" id="event_datetime" class="textboxes"/> </td>
             </tr>
 
             <tr>
-                <td class="formLeft">Event End Date-Time: </td>
+                <td class="formLeft"><span class="required">*</span>Event End Date-Time: </td>
                 <td><input type="datetime-local" name="event_datetime_end" id="event_datetime_end" class="textboxes"/> </td>
             </tr>
 
@@ -132,7 +132,6 @@ include("header.php");
                     <button id="signout_button" style="display: none;">Sign Out</button>
                     <button id="generate_link_button" style="display: none;" onclick="put_data('calLink')" >Generate Calendar Link</button>
                     <input type="text" name="event_calendarLink" id="event_calendarLink" class="textboxes" />
-                    <p> Click on Save after Generating the link  </p>
                 </td>
             </tr>
 
@@ -374,6 +373,8 @@ include("header.php");
         var event_keywords = document.getElementById("event_keywords").value;
         var event_calendarLink = document.getElementById("event_calendarLink").value;
   
+        // alert("test alet");
+
         if (document.getElementById("active_status").checked){
                  var event_status = 'A';
              }else{
@@ -390,7 +391,7 @@ include("header.php");
         function Event_Added_alert(){
             console.log("alerting");
             alert("Calender Event Added. Please check you calendar");
-            // put_data('submit');
+            put_data('submit');
         }
 
         function createEvent(){
@@ -417,24 +418,34 @@ include("header.php");
                         {'method': 'popup', 'minutes': 10}
                         ]
                     },
-                    'visibility':'public',
+                    'attendees': [
+                         {'email': 'iimahd.ernet.in_v78lucntsihg0lhm1e5odm3ppo@group.calendar.google.com'}
+                        ],
+                    'visibility':'public'
+                    
                     };
 
                     var request = gapi.client.calendar.events.insert({
+                        // console.log(event)
                         'calendarId': 'primary',
-                        'resource': event
+                        'resource': event,
                     });
                     
                     request.execute(function(event) {
                         console.log('Event created: ' + event.htmlLink);
+
                         $("#event_calendarLink").val(event.htmlLink);
                         event_calendarLink = String(event.htmlLink);
                        
-                        $("#calendar_button").style.display = 'block';
-                        $("#calendar_button").attr("href",value['event_calendarLink']);
+                        $("#calendar_button").attr("href",event_calendarLink);
             
-                        // // Event_Added_alert();
-                        // alert("Calender Event Added. Please save the event as well");
+                        // Event_Added_alert();
+                        if (event.htmlLink == undefined){
+                            alert("Some Issue. Calendar Not added");
+                        }else{
+                            console.log("addting alert");
+                        Event_Added_alert();
+                            }
 
                     });    
                 }
