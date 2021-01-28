@@ -53,12 +53,15 @@
 	<script src="js/modernizr-2.6.2.min.js"></script>
 
 	
-
 	<link rel="icon" href="upload/iimlogo.png">
-	
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	 -->
 </head>
 
 <body>
+
+
 
 <div class="fh5co-loader"></div>
 	
@@ -118,7 +121,7 @@
 							    <?php echo '<img src="'.$_SESSION["user_image"].'" class="img-responsive img-circle img-thumbnail" width="50" align="middle"/>';?>
 							  </a>
 							  <div class="dropdown-menu navbar-light bg-light" aria-labelledby="navbarDropdown" style="background-color: #e3f2fd;">							
-									<a class="dropdown-item" href="../master/logout.php"><?php echo "<b>Logout?</b>  ".$_SESSION['user_first_name']." ".$_SESSION['user_last_name'].""; ?> </a>
+									<a class="dropdown-item" href=   <?php echo '../master/logout.php?org_id='.ORG ?>   ><?php echo "<b>Logout?</b>  ".$_SESSION['user_first_name']." ".$_SESSION['user_last_name'].""; ?> </a>
 							  </div>
 							  <?php endif; ?>
 
@@ -132,6 +135,9 @@
 			</div>
 		</div>
     </nav>
+
+
+	
 
 
     <article>
